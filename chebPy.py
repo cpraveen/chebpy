@@ -6,7 +6,7 @@ def cheb(N):
     '''
     x      = cos(pi*arange(0,N+1)/N)
     if N%2 == 0:
-        x[N/2] = 0.0 # only when N is even!
+        x[N//2] = 0.0 # only when N is even!
     c      = ones(N+1); c[0] = 2.0; c[N] = 2.0
     c      = c * (-1.0)**arange(0,N+1)
     c      = c.reshape(N+1,1)
