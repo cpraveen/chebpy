@@ -1,7 +1,6 @@
 from numpy import pi,cos,arange,array, flipud,\
      real,zeros, sqrt
-from numpy.fft import fft
-from numpy.fft.fftpack import ifft
+from numpy.fft import fft,ifft
 
 def chebfft(v):
     '''Chebyshev differentiation via fft.
