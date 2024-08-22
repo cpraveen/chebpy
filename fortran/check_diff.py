@@ -1,6 +1,5 @@
 import numpy as np 
 import spectral as cheb
-print(cheb.__doc__)
 
 for N in [8,16,32,64]: 
     x = cheb.chebpts(N) 
