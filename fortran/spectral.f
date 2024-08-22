@@ -146,6 +146,53 @@ Cf2py integer intent(hide), depend(A) N
       RETURN 
       END
 
+      SUBROUTINE TOFOUR(A,B,N)
+      IMPLICIT REAL*8 (A-H,O-Z)
+      DIMENSION A(0:N-1),B(0:N-1)
+Cf2py intent(in,out) A, B
+Cf2py integer intent(hide), depend(A) N
+      CALL FFT(A,B,1,N,-1)
+      A1 = 1.0D0/N
+      DO 10 I=0,N-1
+         A(I) = A(I)*A1
+         B(I) = B(I)*A1
+ 10   CONTINUE
+      RETURN
+      END
+
+      SUBROUTINE FROMFOUR(A,B,N)
+      IMPLICIT REAL*8 (A-H,O-Z)
+      DIMENSION A(0:N-1),B(0:N-1)
+Cf2py intent(in,out) A, B
+Cf2py integer intent(hide), depend(A) N
+      CALL FFT(A,B,1,N,+1)
+      RETURN
+      END
+
+      SUBROUTINE DIFFFOUR(A,B,N)
+      IMPLICIT REAL*8 (A-H,O-Z)
+      DIMENSION A(0:N-1),B(0:N-1)
+Cf2py intent(in,out) A, B
+Cf2py integer intent(hide), depend(A) N
+      PI    = 4.0D0*ATAN(1.0D0)
+      N2    = N/2
+      A(0)  = 0.0D0
+      B(0)  = 0.0D0
+      A(N2) = 0.0D0
+      B(N2) = 0.0D0
+      DO 10 I=1,N2-1
+         J    = N-I
+         F    = I*PI
+         A1   = A(I)*F
+         A(I) = -B(I)*F
+         B(I) = A1
+         A1   = A(J)*F
+         A(J) = B(J)*F
+         B(J) = -A1
+ 10   CONTINUE
+      RETURN
+      END
+
       SUBROUTINE FROMCHEB (A,X,N,B)
       IMPLICIT REAL*8 (A-H,O-Z)
       DIMENSION A(0:N),X(0:N),B(0:N)
