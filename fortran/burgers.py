@@ -5,11 +5,11 @@ See: Stewart, Python for Scientists, Section 9.9
 import numpy as np
 from scipy.integrate import odeint 
 import matplotlib.pyplot as plt
-import spectral as cheb
+from spectral import chebpts,tocheb,fromcheb,diffcheb
 
 c, mu = 1.0, 0.1
 N = 64
-x = cheb.chebpts(N)
+x = chebpts(N)
 tau1, tau2 = N**2, N**2
 t_initial, t_final = -2.0, 2.0
 
@@ -36,11 +36,11 @@ def g2(t):
 
 def rhs(u, t):
     """ Return du/dt. """
-    u_cheb    = cheb.tocheb(u,x)
-    ux_cheb   = cheb.diffcheb(u_cheb)
-    uxx_cheb  = cheb.diffcheb(ux_cheb)
-    ux        = cheb.fromcheb(ux_cheb,x)
-    uxx       = cheb.fromcheb(uxx_cheb,x)
+    u_cheb    = tocheb(u,x)
+    ux_cheb   = diffcheb(u_cheb)
+    uxx_cheb  = diffcheb(ux_cheb)
+    ux        = fromcheb(ux_cheb,x)
+    uxx       = fromcheb(uxx_cheb,x)
     dudt      = -u*ux + mu*uxx
     dudt[0]  -= tau1*(u[0]**2 - mu*ux[0] - g1(t))
     dudt[-1] -= tau2*(mu*ux[-1] - g2(t))

@@ -1,16 +1,5 @@
-      SUBROUTINE CHEBPTS(X, N)
-C     CREATE N+1 CHEBYSHEV DATA POINTS IN X 
-      IMPLICIT REAL*8 (A-H,O-Z)
-      DIMENSION X(0:N)
-Cf2py intent(in) N
-Cf2py intent(out) X
-Cf2py depend(N) X
-      PI = 4.D0*ATAN(1.D0) 
-      DO 10 I=0,N
-         X(I) = -COS(PI*I/N) 
- 10   CONTINUE
-      RETURN
-      END
+C     Fourier and Chebyshev codes from
+C        Fornberg: Practical Guide to Pseudospectral Methods
 
       SUBROUTINE FFT (A,B,IS,N,ID)
 C-- +--------------------------------------------------------------
@@ -189,6 +178,20 @@ Cf2py integer intent(hide), depend(A) N
          A1   = A(J)*F
          A(J) = B(J)*F
          B(J) = -A1
+ 10   CONTINUE
+      RETURN
+      END
+
+      SUBROUTINE CHEBPTS(X, N)
+C     CREATE N+1 CHEBYSHEV DATA POINTS IN X 
+      IMPLICIT REAL*8 (A-H,O-Z)
+      DIMENSION X(0:N)
+Cf2py intent(in) N
+Cf2py intent(out) X
+Cf2py depend(N) X
+      PI = 4.D0*ATAN(1.D0) 
+      DO 10 I=0,N
+         X(I) = -COS(PI*I/N) 
  10   CONTINUE
       RETURN
       END
