@@ -23,7 +23,7 @@ C-- +--------------------------------------------------------------
       DIMENSION A(0:*),B(0:*)
 Cf2py intent(in, out) A, B
 Cf2py intent(in) IS, ID
-Cf2py integer intent(hide), depend(A) N
+Cf2py integer intent(hide), depend(A) :: N = len(A)
       J=0
 C---  APPLY PERMUTATION MATRIX ----
       DO 20 I=0,(N-2)*IS,IS
@@ -96,7 +96,7 @@ C-- +--------------------------------------------------------------
       DIMENSION A(0:*),X(0:*),B(0:*) 
 Cf2py intent(in) A, X
 Cf2py intent(out) B
-Cf2py integer intent(hide), depend(A) N
+Cf2py integer intent(hide), depend(A) :: N = len(A)
       N2 = N/2
       A0 = A(N2-1)+A(N2+1)
       A9 = A(1)
@@ -139,7 +139,7 @@ Cf2py integer intent(hide), depend(A) N
       IMPLICIT REAL*8 (A-H,O-Z)
       DIMENSION A(0:N-1),B(0:N-1)
 Cf2py intent(in,out) A, B
-Cf2py integer intent(hide), depend(A) N
+Cf2py integer intent(hide), depend(A) :: N = len(A)
       CALL FFT(A,B,1,N,-1)
       A1 = 1.0D0/N
       DO 10 I=0,N-1
@@ -153,7 +153,7 @@ Cf2py integer intent(hide), depend(A) N
       IMPLICIT REAL*8 (A-H,O-Z)
       DIMENSION A(0:N-1),B(0:N-1)
 Cf2py intent(in,out) A, B
-Cf2py integer intent(hide), depend(A) N
+Cf2py integer intent(hide), depend(A) :: N = len(A)
       CALL FFT(A,B,1,N,+1)
       RETURN
       END
@@ -162,7 +162,7 @@ Cf2py integer intent(hide), depend(A) N
       IMPLICIT REAL*8 (A-H,O-Z)
       DIMENSION A(0:N-1),B(0:N-1)
 Cf2py intent(in,out) A, B
-Cf2py integer intent(hide), depend(A) N
+Cf2py integer intent(hide), depend(A) :: N = len(A)
       PI    = 4.0D0*ATAN(1.0D0)
       N2    = N/2
       A(0)  = 0.0D0
@@ -201,7 +201,7 @@ Cf2py depend(N) X
       DIMENSION A(0:N),X(0:N),B(0:N)
 Cf2py intent(in) A, X
 Cf2py intent(out) B
-Cf2py integer intent(hide), depend(A) N
+Cf2py integer intent(hide), depend(A) :: N = len(A) - 1
       B(0) = A(0)
       A1 = 0.5D0
       DO 10 I=1,N-1
@@ -218,7 +218,7 @@ Cf2py integer intent(hide), depend(A) N
       DIMENSION A(0:N),X(0:N),B(0:N)
 Cf2py intent(in) A, X
 Cf2py intent(out) B
-Cf2py integer intent(hide), depend(A) N
+Cf2py integer intent(hide), depend(A) :: N = len(A) - 1
       CALL FCT(A,X,N,B) 
       B1 = 0.5D0/N
       B(0) = B(0)*B1 
@@ -236,7 +236,7 @@ Cf2py integer intent(hide), depend(A) N
       DIMENSION A(0:N),B(0:N)
 Cf2py intent(in) A
 Cf2py intent(out) B
-Cf2py integer intent(hide), depend(A) N
+Cf2py integer intent(hide), depend(A) :: N = len(A) - 1
       A1 = A(N)
       A2 = A(N-1)
       B(N) = 0.D0
