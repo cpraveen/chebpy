@@ -1,10 +1,10 @@
 from numpy import pi,cos,arange,ones,tile,dot,eye,diag
 
 def cheb(N):
-    '''Chebushev polynomial differentiation matrix.
+    '''Chebyshev polynomial differentiation matrix.
        Ref.: Trefethen's 'Spectral Methods in MATLAB' book.
     '''
-    x      = cos(pi*arange(0,N+1)/N)
+    x      = -cos(pi*arange(0,N+1)/N)
     if N%2 == 0:
         x[N//2] = 0.0 # only when N is even!
     c      = ones(N+1); c[0] = 2.0; c[N] = 2.0
