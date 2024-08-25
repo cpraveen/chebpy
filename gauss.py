@@ -5,6 +5,7 @@ from numpy.linalg import eig
 #   x[n] : quadrature points in (-1,1)
 #   w[n] : Quadrature weights, summing to 2
 def gauss(n):
+    assert n > 0, "Need atleast one point"
     beta = 0.5/sqrt(1 - 1/(2*arange(1,n))**2)
     T = diag(beta,-1) + diag(beta,+1)
     x, V = eig(T); i = argsort(x); x = sort(x)

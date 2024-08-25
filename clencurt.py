@@ -1,7 +1,9 @@
 from numpy import pi,arange,cos,zeros,ones,mod
 
-# (N+1)-point Clenshaw-Curtiss quadrature
-def clencurt(N):
+# n-point Clenshaw-Curtiss quadrature
+def clencurt(n):
+    assert n > 1, "Need atleast 2 points"
+    N = n - 1 # degree of underlying interpolant
     theta = pi*arange(N+1)/N
     x = -cos(theta)
     w = zeros(N+1)
