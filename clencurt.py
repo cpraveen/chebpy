@@ -1,5 +1,6 @@
 from numpy import pi,arange,cos,zeros,ones,mod
 
+# (N+1)-point Clenshaw-Curtiss quadrature
 def clencurt(N):
     theta = pi*arange(N+1)/N
     x = -cos(theta)
