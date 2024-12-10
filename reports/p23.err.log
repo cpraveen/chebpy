@@ -48,9 +48,9 @@ for i in range(4):
 ----- stderr -----
 <>:24: SyntaxWarning: invalid escape sequence '\p'
 <>:24: SyntaxWarning: invalid escape sequence '\p'
-/var/folders/tc/17nf7v3j53jgg4db9vxl40g00000gn/T/ipykernel_4759/3353260806.py:24: SyntaxWarning: invalid escape sequence '\p'
+/var/folders/tc/17nf7v3j53jgg4db9vxl40g00000gn/T/ipykernel_5546/3353260806.py:24: SyntaxWarning: invalid escape sequence '\p'
   title("eig = %18.12f $\pi^2/4$"%(D[i]/(pi**2/4)))
-/var/folders/tc/17nf7v3j53jgg4db9vxl40g00000gn/T/ipykernel_4759/3353260806.py:24: SyntaxWarning: invalid escape sequence '\p'
+/var/folders/tc/17nf7v3j53jgg4db9vxl40g00000gn/T/ipykernel_5546/3353260806.py:24: SyntaxWarning: invalid escape sequence '\p'
   title("eig = %18.12f $\pi^2/4$"%(D[i]/(pi**2/4)))
 ------------------
 
