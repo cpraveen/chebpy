@@ -1,0 +1,84 @@
+Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Set up tensor product Laplacian and compute 4 eigenmodes
+N = 16; D,x = cheb(N); y = x;
+xx,yy = meshgrid(x[1:N],y[1:N])
+xx = reshape(xx,(N-1)**2)
+yy = reshape(yy,(N-1)**2)
+D2 = dot(D,D); D2 = D2[1:N,1:N]; I = eye(N-1)
+L = -kron(I,D2) - kron(D2,I)
+L = L + diag(exp(20*(yy-xx-1)))
+D,V = eig(L); D = real(D); V = real(V)
+ii = argsort(D); ii = ii[0:4]; D = D[ii]; V = V[:,ii]
+
+# Reshape them to 2D grid, interpolate to finer grid, and plot
+fine = linspace(-1.0,1.0,100,True);
+uu = zeros((N+1,N+1));
+
+figure(figsize=(10,10))
+for i in range(4):
+    uu[1:N,1:N] = reshape(V[:,i],(N-1,N-1))
+    uu = uu/norm(uu,inf)
+    f = interp2d(x,y,uu,kind='cubic')
+    uuu = f(fine,fine)
+    subplot(2,2,i+1)
+    contour(fine,fine,uuu,10)
+    title("eig = %18.12f $\pi^2/4$"%(D[i]/(pi**2/4)))
+    
+------------------
+
+----- stderr -----
+<>:24: SyntaxWarning: invalid escape sequence '\p'
+<>:24: SyntaxWarning: invalid escape sequence '\p'
+/var/folders/tc/17nf7v3j53jgg4db9vxl40g00000gn/T/ipykernel_4759/3353260806.py:24: SyntaxWarning: invalid escape sequence '\p'
+  title("eig = %18.12f $\pi^2/4$"%(D[i]/(pi**2/4)))
+/var/folders/tc/17nf7v3j53jgg4db9vxl40g00000gn/T/ipykernel_4759/3353260806.py:24: SyntaxWarning: invalid escape sequence '\p'
+  title("eig = %18.12f $\pi^2/4$"%(D[i]/(pi**2/4)))
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNotImplementedError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[2], line 20[0m
+[1;32m     18[0m uu[[38;5;241m1[39m:N,[38;5;241m1[39m:N] [38;5;241m=[39m reshape(V[:,i],(N[38;5;241m-[39m[38;5;241m1[39m,N[38;5;241m-[39m[38;5;241m1[39m))
+[1;32m     19[0m uu [38;5;241m=[39m uu[38;5;241m/[39mnorm(uu,inf)
+[0;32m---> 20[0m f [38;5;241m=[39m [43minterp2d[49m[43m([49m[43mx[49m[43m,[49m[43my[49m[43m,[49m[43muu[49m[43m,[49m[43mkind[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mcubic[39;49m[38;5;124;43m'[39;49m[43m)[49m
+[1;32m     21[0m uuu [38;5;241m=[39m f(fine,fine)
+[1;32m     22[0m subplot([38;5;241m2[39m,[38;5;241m2[39m,i[38;5;241m+[39m[38;5;241m1[39m)
+
+File [0;32m/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/scipy/interpolate/_interpolate.py:129[0m, in [0;36minterp2d.__init__[0;34m(self, x, y, z, kind, copy, bounds_error, fill_value)[0m
+[1;32m    127[0m [38;5;28;01mdef[39;00m [38;5;21m__init__[39m([38;5;28mself[39m, x, y, z, kind[38;5;241m=[39m[38;5;124m'[39m[38;5;124mlinear[39m[38;5;124m'[39m, copy[38;5;241m=[39m[38;5;28;01mTrue[39;00m, bounds_error[38;5;241m=[39m[38;5;28;01mFalse[39;00m,
+[1;32m    128[0m              fill_value[38;5;241m=[39m[38;5;28;01mNone[39;00m):
+[0;32m--> 129[0m     [38;5;28;01mraise[39;00m [38;5;167;01mNotImplementedError[39;00m(err_mesg)
+
+[0;31mNotImplementedError[0m: `interp2d` has been removed in SciPy 1.14.0.
+
+For legacy code, nearly bug-for-bug compatible replacements are
+`RectBivariateSpline` on regular grids, and `bisplrep`/`bisplev` for
+scattered 2D data.
+
+In new code, for regular grids use `RegularGridInterpolator` instead.
+For scattered data, prefer `LinearNDInterpolator` or
+`CloughTocher2DInterpolator`.
+
+For more details see
+https://scipy.github.io/devdocs/tutorial/interpolate/interp_transition_guide.html
+
+

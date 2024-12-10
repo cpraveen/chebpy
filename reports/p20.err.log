@@ -1,0 +1,110 @@
+Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Grid and inital Data:
+N = 24; x = cos(pi*arange(0,N+1)/N); y = x;
+t = 0.0; dt = (6.0)/(N**2)
+xx, yy = meshgrid(x,y)
+plotgap = int (round( (1.0/3.0) / (dt))); dt = (1.0/3.0)/(plotgap);            
+vv = exp(-40*((xx-0.4)**2 + yy**2));
+vvold = vv; 
+
+#Time stepping Leapfrog Formula:
+fig = figure(figsize=(12,12))
+k = 1;
+for n in range(0,(3*plotgap)+1):
+    t = n*dt;
+    if (remainder(n+0.5,plotgap) < 1):
+        ax = fig.add_subplot(2,2,k,projection ='3d')
+        f = interp2d(x,y,vv,kind='cubic');
+        xxx = arange(-1.,1.+1./16,1./16);
+        vvv = f(xxx,xxx)
+        X,Y = meshgrid(xxx,xxx);
+        ax.plot_surface(X,Y,vvv,rstride=1,cstride=1,cmap=cm.jet,edgecolor='black')
+        ax.set_zlim3d([-0.15,1])
+        ax.set_xlim3d([-1,1])
+        ax.set_ylim3d([-1,1])
+        ax.view_init(elev=40., azim=250.)
+        title("$ t $= " +str(t))
+        xlabel("x"); ylabel("y");
+        k = k+1;
+    
+    uxx = zeros((N+1,N+1)); uyy = zeros((N+1,N+1));
+    ii = arange(1,N);
+    
+    for i in range(1,N):
+        v = vv[i,:];          
+        V = list(v) + list(flipud(v[ii]));
+        U = real(fft(V));
+        w1_hat = 1j*zeros(2*N);
+        w1_hat[0:N] = 1j*arange(0,N)
+        w1_hat[N+1:] = 1j*arange(-N+1,0)
+        W1 = real(ifft(w1_hat * U))
+        w2_hat = 1j*zeros(2*N);
+        w2_hat[0:N+1] = arange(0,N+1)
+        w2_hat[N+1:] = arange(-N+1,0)
+        W2 = real(ifft((-w2_hat**2) * U))
+        uxx[i,ii] = W2[ii]/(1-x[ii]**2) - (x[ii]*W1[ii])/(1-x[ii]**2)**(3.0/2);
+    for j in range(1,N):
+        v = vv[:,j]; 
+        V = list(v) + list(flipud(v[ii]));
+        U = real(fft(V))
+        w1_hat = 1j*zeros(2*N);
+        w1_hat[0:N] = 1j*arange(0,N)
+        w1_hat[N+1:] = 1j*arange(-N+1,0)
+        W1 = real(ifft(w1_hat * U))
+        w2_hat = 1j*zeros(2*N);
+        w2_hat[0:N+1] = arange(0,N+1)
+        w2_hat[N+1:] = arange(-N+1,0)
+        W2 = real(ifft(-(w2_hat**2) * U))
+        uyy[ii,j] = W2[ii]/(1-y[ii]**2) - y[ii]*W1[ii]/(1-y[ii]**2)**(3.0/2.0);
+    vvnew = 2*vv - vvold + dt**2 *(uxx+uyy)
+    vvold = vv ; vv = vvnew;
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNotImplementedError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[2], line 16[0m
+[1;32m     14[0m [38;5;28;01mif[39;00m (remainder(n[38;5;241m+[39m[38;5;241m0.5[39m,plotgap) [38;5;241m<[39m [38;5;241m1[39m):
+[1;32m     15[0m     ax [38;5;241m=[39m fig[38;5;241m.[39madd_subplot([38;5;241m2[39m,[38;5;241m2[39m,k,projection [38;5;241m=[39m[38;5;124m'[39m[38;5;124m3d[39m[38;5;124m'[39m)
+[0;32m---> 16[0m     f [38;5;241m=[39m [43minterp2d[49m[43m([49m[43mx[49m[43m,[49m[43my[49m[43m,[49m[43mvv[49m[43m,[49m[43mkind[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mcubic[39;49m[38;5;124;43m'[39;49m[43m)[49m;
+[1;32m     17[0m     xxx [38;5;241m=[39m arange([38;5;241m-[39m[38;5;241m1.[39m,[38;5;241m1.[39m[38;5;241m+[39m[38;5;241m1.[39m[38;5;241m/[39m[38;5;241m16[39m,[38;5;241m1.[39m[38;5;241m/[39m[38;5;241m16[39m);
+[1;32m     18[0m     vvv [38;5;241m=[39m f(xxx,xxx)
+
+File [0;32m/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/scipy/interpolate/_interpolate.py:129[0m, in [0;36minterp2d.__init__[0;34m(self, x, y, z, kind, copy, bounds_error, fill_value)[0m
+[1;32m    127[0m [38;5;28;01mdef[39;00m [38;5;21m__init__[39m([38;5;28mself[39m, x, y, z, kind[38;5;241m=[39m[38;5;124m'[39m[38;5;124mlinear[39m[38;5;124m'[39m, copy[38;5;241m=[39m[38;5;28;01mTrue[39;00m, bounds_error[38;5;241m=[39m[38;5;28;01mFalse[39;00m,
+[1;32m    128[0m              fill_value[38;5;241m=[39m[38;5;28;01mNone[39;00m):
+[0;32m--> 129[0m     [38;5;28;01mraise[39;00m [38;5;167;01mNotImplementedError[39;00m(err_mesg)
+
+[0;31mNotImplementedError[0m: `interp2d` has been removed in SciPy 1.14.0.
+
+For legacy code, nearly bug-for-bug compatible replacements are
+`RectBivariateSpline` on regular grids, and `bisplrep`/`bisplev` for
+scattered 2D data.
+
+In new code, for regular grids use `RegularGridInterpolator` instead.
+For scattered data, prefer `LinearNDInterpolator` or
+`CloughTocher2DInterpolator`.
+
+For more details see
+https://scipy.github.io/devdocs/tutorial/interpolate/interp_transition_guide.html
+
+
