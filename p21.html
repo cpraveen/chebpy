@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="p22: 5’th eigenvector of Airy equation" href="p22.html" />
-    <link rel="prev" title="Second order wave equation in 2-D via FFT" href="p20.html" />
+    <link rel="prev" title="p20: Second order wave equation in 2-D via FFT" href="p20.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -175,22 +175,22 @@
 <li class="toctree-l1"><a class="reference internal" href="p04.html">p04: Periodic spectral differentiation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p05.html">p05: Repetition of p04 via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p05b.html">p05b: Repetition of p05 via real FFT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p05c.html">p05: Repetition of p05 using scipy.fftpack.diff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p05c.html">p05c: Repetition of p05 using scipy.fftpack.diff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p06.html">p06: Variable coefficient wave equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p07.html">p07: Accuracy of periodic spectral differentiation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p08.html">p08: Eigenvalues of harmonic oscillator <span class="math notranslate nohighlight">\(-u'' + x^2 u\)</span> on <span class="math notranslate nohighlight">\(R\)</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="p08.html">p08: Eigenvalues of harmonic oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p09.html">p09: Polynomial interpolation in equispaced and chebyshev points</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p10.html">p10: Polynomials and corresponding equipotential curves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p11.html">p11: Chebyshev differentiation of a smooth function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p12.html">p12: Accuracy of Chebyshev spectral differentiation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p13.html">p13: Solve linear BVP <span class="math notranslate nohighlight">\(u_{xx} = \exp(4x)\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP <span class="math notranslate nohighlight">\(u_{xx} = exp(u)\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span> by iteration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p15.html">p15 - Solve eigenvalue BVP <span class="math notranslate nohighlight">\(u_{xx} = \lambda u\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation on [-1,1]x[-1,1] with u=0 on boundary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p13.html">p13: Solve linear BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p15.html">p15 - Solve eigenvalue BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p17.html">p17: Helmholtz Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p18.html">p18: Chebyshev differentiation via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p19.html">p19: Second order Wave Equation on Chebyshev Grid</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p20.html">Second order wave equation in 2-D via FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p20.html">p20: Second order wave equation in 2-D via FFT</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">p21: Eigenvalues of Mathieu operator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p22.html">p22: 5’th eigenvector of Airy equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of perturbed Laplacian on [-1,1]x[-1,1]</a></li>
@@ -394,8 +394,7 @@
 <h1>p21: Eigenvalues of Mathieu operator<a class="headerlink" href="#p21-eigenvalues-of-mathieu-operator" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span><span class="n">arange</span><span class="p">,</span><span class="n">sin</span><span class="p">,</span><span class="n">cos</span><span class="p">,</span><span class="n">zeros</span><span class="p">,</span><span class="n">diag</span><span class="p">,</span><span class="n">sort</span><span class="p">,</span><span class="n">real</span>
 <span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">toeplitz</span>
 <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">eig</span>
@@ -428,18 +427,12 @@
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ne</span><span class="p">):</span>
     <span class="n">plot</span><span class="p">(</span><span class="n">qq</span><span class="p">,</span><span class="n">data</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span><span class="nb">next</span><span class="p">(</span><span class="n">lines</span><span class="p">))</span>
 <span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;q&quot;</span><span class="p">)</span>
-<span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$\lambda$&quot;</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">lambda$&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:22: SyntaxWarning: invalid escape sequence &#39;\l&#39;
-&lt;&gt;:22: SyntaxWarning: invalid escape sequence &#39;\l&#39;
-/var/folders/tc/17nf7v3j53jgg4db9vxl40g00000gn/T/ipykernel_6490/971891851.py:22: SyntaxWarning: invalid escape sequence &#39;\l&#39;
-  ylabel(&quot;$\lambda$&quot;);
-</pre></div>
-</div>
-<img alt="_images/cd9cefa45d5b18a49eeba8b7f7bb564eea16953aff7380b0ca3668159287dbcd.svg" src="_images/cd9cefa45d5b18a49eeba8b7f7bb564eea16953aff7380b0ca3668159287dbcd.svg" />
+<img alt="_images/9aeaa5227feae11f70db09be7cfb0fa587afcc70f7e1eb04be227a73076d2cac.svg" src="_images/9aeaa5227feae11f70db09be7cfb0fa587afcc70f7e1eb04be227a73076d2cac.svg" />
 </div>
 </div>
 </section>
@@ -480,7 +473,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Second order wave equation in 2-D via FFT</p>
+        <p class="prev-next-title">p20: Second order wave equation in 2-D via FFT</p>
       </div>
     </a>
     <a class="right-next"

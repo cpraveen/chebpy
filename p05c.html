@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>p05: Repetition of p05 using scipy.fftpack.diff &#8212; Spectral Methods</title>
+    <title>p05c: Repetition of p05 using scipy.fftpack.diff &#8212; Spectral Methods</title>
   
   
   
@@ -175,22 +175,22 @@
 <li class="toctree-l1"><a class="reference internal" href="p04.html">p04: Periodic spectral differentiation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p05.html">p05: Repetition of p04 via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p05b.html">p05b: Repetition of p05 via real FFT</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">p05: Repetition of p05 using scipy.fftpack.diff</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">p05c: Repetition of p05 using scipy.fftpack.diff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p06.html">p06: Variable coefficient wave equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p07.html">p07: Accuracy of periodic spectral differentiation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p08.html">p08: Eigenvalues of harmonic oscillator <span class="math notranslate nohighlight">\(-u'' + x^2 u\)</span> on <span class="math notranslate nohighlight">\(R\)</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="p08.html">p08: Eigenvalues of harmonic oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p09.html">p09: Polynomial interpolation in equispaced and chebyshev points</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p10.html">p10: Polynomials and corresponding equipotential curves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p11.html">p11: Chebyshev differentiation of a smooth function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p12.html">p12: Accuracy of Chebyshev spectral differentiation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p13.html">p13: Solve linear BVP <span class="math notranslate nohighlight">\(u_{xx} = \exp(4x)\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP <span class="math notranslate nohighlight">\(u_{xx} = exp(u)\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span> by iteration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p15.html">p15 - Solve eigenvalue BVP <span class="math notranslate nohighlight">\(u_{xx} = \lambda u\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation on [-1,1]x[-1,1] with u=0 on boundary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p13.html">p13: Solve linear BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p15.html">p15 - Solve eigenvalue BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p17.html">p17: Helmholtz Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p18.html">p18: Chebyshev differentiation via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p19.html">p19: Second order Wave Equation on Chebyshev Grid</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p20.html">Second order wave equation in 2-D via FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p20.html">p20: Second order wave equation in 2-D via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p21.html">p21: Eigenvalues of Mathieu operator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p22.html">p22: 5’th eigenvector of Airy equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of perturbed Laplacian on [-1,1]x[-1,1]</a></li>
@@ -376,7 +376,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>p05: Repetition of p05 using scipy.fftpack.diff</h1>
+    <h1>p05c: Repetition of p05 using scipy.fftpack.diff</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -390,8 +390,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="p05-repetition-of-p05-using-scipy-fftpack-diff">
-<h1>p05: Repetition of p05 using scipy.fftpack.diff<a class="headerlink" href="#p05-repetition-of-p05-using-scipy-fftpack-diff" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="p05c-repetition-of-p05-using-scipy-fftpack-diff">
+<h1>p05c: Repetition of p05 using scipy.fftpack.diff<a class="headerlink" href="#p05c-repetition-of-p05-using-scipy-fftpack-diff" title="Link to this heading">#</a></h1>
 <p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/fftpack.html">scipy.fftpack</a> is considered legacy package and may not receive updates.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -441,7 +441,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8bc66386bc1e4d1de91f9e00280e4fa9d9f51ee173975cffb46ffeafaa364520.svg" src="_images/8bc66386bc1e4d1de91f9e00280e4fa9d9f51ee173975cffb46ffeafaa364520.svg" />
+<img alt="_images/2a3b531dcfc06f1e6d639939174640a9805739d3b382abf5204d0bf291903b5b.svg" src="_images/2a3b531dcfc06f1e6d639939174640a9805739d3b382abf5204d0bf291903b5b.svg" />
 </div>
 </div>
 </section>

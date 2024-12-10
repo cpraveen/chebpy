@@ -175,22 +175,22 @@
 <li class="toctree-l1"><a class="reference internal" href="p04.html">p04: Periodic spectral differentiation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p05.html">p05: Repetition of p04 via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p05b.html">p05b: Repetition of p05 via real FFT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p05c.html">p05: Repetition of p05 using scipy.fftpack.diff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p05c.html">p05c: Repetition of p05 using scipy.fftpack.diff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p06.html">p06: Variable coefficient wave equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p07.html">p07: Accuracy of periodic spectral differentiation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p08.html">p08: Eigenvalues of harmonic oscillator <span class="math notranslate nohighlight">\(-u'' + x^2 u\)</span> on <span class="math notranslate nohighlight">\(R\)</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="p08.html">p08: Eigenvalues of harmonic oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p09.html">p09: Polynomial interpolation in equispaced and chebyshev points</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p10.html">p10: Polynomials and corresponding equipotential curves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p11.html">p11: Chebyshev differentiation of a smooth function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p12.html">p12: Accuracy of Chebyshev spectral differentiation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p13.html">p13: Solve linear BVP <span class="math notranslate nohighlight">\(u_{xx} = \exp(4x)\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP <span class="math notranslate nohighlight">\(u_{xx} = exp(u)\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span> by iteration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p15.html">p15 - Solve eigenvalue BVP <span class="math notranslate nohighlight">\(u_{xx} = \lambda u\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation on [-1,1]x[-1,1] with u=0 on boundary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p13.html">p13: Solve linear BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p15.html">p15 - Solve eigenvalue BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p17.html">p17: Helmholtz Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p18.html">p18: Chebyshev differentiation via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p19.html">p19: Second order Wave Equation on Chebyshev Grid</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p20.html">Second order wave equation in 2-D via FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p20.html">p20: Second order wave equation in 2-D via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p21.html">p21: Eigenvalues of Mathieu operator</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">p22: 5’th eigenvector of Airy equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of perturbed Laplacian on [-1,1]x[-1,1]</a></li>
@@ -394,8 +394,7 @@
 <h1>p22: 5’th eigenvector of Airy equation<a class="headerlink" href="#p22-5-th-eigenvector-of-airy-equation" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
 <span class="kn">from</span> <span class="nn">chebPy</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">dot</span><span class="p">,</span><span class="n">diag</span><span class="p">,</span><span class="n">real</span><span class="p">,</span><span class="n">argsort</span><span class="p">,</span><span class="n">zeros</span><span class="p">,</span><span class="n">linspace</span><span class="p">,</span><span class="n">polyval</span><span class="p">,</span><span class="n">polyfit</span><span class="p">,</span><span class="n">where</span>
 <span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">eig</span>
@@ -422,11 +421,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/tc/17nf7v3j53jgg4db9vxl40g00000gn/T/ipykernel_6493/1541387896.py:9: RankWarning: Polyfit may be poorly conditioned
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/bf/9z7c3wfn7033kh93rp599rg00000gn/T/ipykernel_2476/1541387896.py:9: RankWarning: Polyfit may be poorly conditioned
   xx = linspace(-1.0,1.0,200); vv = polyval(polyfit(x,v,N),xx);
 </pre></div>
 </div>
-<img alt="_images/da4c6dd9c53a65c99e195f5cfaefed1e2be613a7907b2096a2d38dd6d7534813.svg" src="_images/da4c6dd9c53a65c99e195f5cfaefed1e2be613a7907b2096a2d38dd6d7534813.svg" />
+<img alt="_images/5b7421cd6a2eb8230203e788d3639b76492806cdebd6b0910d4ae23c8efefc47.svg" src="_images/5b7421cd6a2eb8230203e788d3639b76492806cdebd6b0910d4ae23c8efefc47.svg" />
 </div>
 </div>
 </section>

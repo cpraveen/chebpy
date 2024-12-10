@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>p15 - Solve eigenvalue BVP \(u_{xx} = \lambda u\), \(u(-1)=u(1)=0\) &#8212; Spectral Methods</title>
+    <title>p15 - Solve eigenvalue BVP &#8212; Spectral Methods</title>
   
   
   
@@ -65,8 +65,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'p15';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="p16: Poisson equation on [-1,1]x[-1,1] with u=0 on boundary" href="p16.html" />
-    <link rel="prev" title="p14 - Solve nonlinear BVP \(u_{xx} = exp(u)\), \(u(-1)=u(1)=0\) by iteration" href="p14.html" />
+    <link rel="next" title="p16: Poisson equation in 2-D" href="p16.html" />
+    <link rel="prev" title="p14 - Solve nonlinear BVP" href="p14.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -177,22 +177,22 @@
 <li class="toctree-l1"><a class="reference internal" href="p04.html">p04: Periodic spectral differentiation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p05.html">p05: Repetition of p04 via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p05b.html">p05b: Repetition of p05 via real FFT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p05c.html">p05: Repetition of p05 using scipy.fftpack.diff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p05c.html">p05c: Repetition of p05 using scipy.fftpack.diff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p06.html">p06: Variable coefficient wave equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p07.html">p07: Accuracy of periodic spectral differentiation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p08.html">p08: Eigenvalues of harmonic oscillator <span class="math notranslate nohighlight">\(-u'' + x^2 u\)</span> on <span class="math notranslate nohighlight">\(R\)</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="p08.html">p08: Eigenvalues of harmonic oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p09.html">p09: Polynomial interpolation in equispaced and chebyshev points</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p10.html">p10: Polynomials and corresponding equipotential curves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p11.html">p11: Chebyshev differentiation of a smooth function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p12.html">p12: Accuracy of Chebyshev spectral differentiation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p13.html">p13: Solve linear BVP <span class="math notranslate nohighlight">\(u_{xx} = \exp(4x)\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP <span class="math notranslate nohighlight">\(u_{xx} = exp(u)\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span> by iteration</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">p15 - Solve eigenvalue BVP <span class="math notranslate nohighlight">\(u_{xx} = \lambda u\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation on [-1,1]x[-1,1] with u=0 on boundary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p13.html">p13: Solve linear BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">p15 - Solve eigenvalue BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p17.html">p17: Helmholtz Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p18.html">p18: Chebyshev differentiation via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p19.html">p19: Second order Wave Equation on Chebyshev Grid</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p20.html">Second order wave equation in 2-D via FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p20.html">p20: Second order wave equation in 2-D via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p21.html">p21: Eigenvalues of Mathieu operator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p22.html">p22: 5’th eigenvector of Airy equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of perturbed Laplacian on [-1,1]x[-1,1]</a></li>
@@ -378,7 +378,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>p15 - Solve eigenvalue BVP u_{xx} = \lambda u, u(-1)=u(1)=0</h1>
+    <h1>p15 - Solve eigenvalue BVP</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,12 +392,15 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="p15-solve-eigenvalue-bvp-u-xx-lambda-u-u-1-u-1-0">
-<h1>p15 - Solve eigenvalue BVP <span class="math notranslate nohighlight">\(u_{xx} = \lambda u\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span><a class="headerlink" href="#p15-solve-eigenvalue-bvp-u-xx-lambda-u-u-1-u-1-0" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="p15-solve-eigenvalue-bvp">
+<h1>p15 - Solve eigenvalue BVP<a class="headerlink" href="#p15-solve-eigenvalue-bvp" title="Link to this heading">#</a></h1>
+<div class="math notranslate nohighlight">
+\[
+u_{xx} = \lambda u, \qquad u(-1)=u(1)=0
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">dot</span><span class="p">,</span><span class="n">argsort</span><span class="p">,</span><span class="n">linspace</span><span class="p">,</span><span class="n">shape</span><span class="p">,</span><span class="n">zeros</span><span class="p">,</span><span class="n">polyval</span><span class="p">,</span><span class="n">polyfit</span><span class="p">,</span><span class="n">pi</span><span class="p">,</span><span class="n">real</span>
 <span class="kn">from</span> <span class="nn">chebPy</span> <span class="kn">import</span> <span class="n">cheb</span>
 <span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">solve</span><span class="p">,</span><span class="n">eig</span>
@@ -436,13 +439,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:20: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-&lt;&gt;:20: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-/var/folders/tc/17nf7v3j53jgg4db9vxl40g00000gn/T/ipykernel_6471/220344929.py:20: SyntaxWarning: invalid escape sequence &#39;\p&#39;
-  s = &#39;eig %d = %20.13f * 4/$\pi^2$&#39; %(j,lam[j-1]*4/pi**2)
-</pre></div>
-</div>
-<img alt="_images/b9849dd3dc263cafd4d3f3e951d2a28a7472f4b1de05e3ff06578ee90493e838.svg" src="_images/b9849dd3dc263cafd4d3f3e951d2a28a7472f4b1de05e3ff06578ee90493e838.svg" />
+<img alt="_images/948aaaabddea42f0a80d4102ab2495d87479c1f3f06100d4c06f7317b5c970f9.svg" src="_images/948aaaabddea42f0a80d4102ab2495d87479c1f3f06100d4c06f7317b5c970f9.svg" />
 </div>
 </div>
 </section>
@@ -483,7 +480,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">p14 - Solve nonlinear BVP <span class="math notranslate nohighlight">\(u_{xx} = exp(u)\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span> by iteration</p>
+        <p class="prev-next-title">p14 - Solve nonlinear BVP</p>
       </div>
     </a>
     <a class="right-next"
@@ -491,7 +488,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">p16: Poisson equation on [-1,1]x[-1,1] with u=0 on boundary</p>
+        <p class="prev-next-title">p16: Poisson equation in 2-D</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

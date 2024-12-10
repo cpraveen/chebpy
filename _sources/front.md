@@ -1,6 +1,10 @@
 # Spectral Methods
 
-These examples are based on the book L. N. Trefethen. I have rewritten these codes in Python.
+These examples are based on the book 
+
+> L. N. Trefethen, Spectral Methods in MATLAB, SIAM.
+
+I have rewritten these codes in Python.
 
 For nbviewer links to these files, see here
 

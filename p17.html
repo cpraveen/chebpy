@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="p18: Chebyshev differentiation via FFT" href="p18.html" />
-    <link rel="prev" title="p16: Poisson equation on [-1,1]x[-1,1] with u=0 on boundary" href="p16.html" />
+    <link rel="prev" title="p16: Poisson equation in 2-D" href="p16.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -177,22 +177,22 @@
 <li class="toctree-l1"><a class="reference internal" href="p04.html">p04: Periodic spectral differentiation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p05.html">p05: Repetition of p04 via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p05b.html">p05b: Repetition of p05 via real FFT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p05c.html">p05: Repetition of p05 using scipy.fftpack.diff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p05c.html">p05c: Repetition of p05 using scipy.fftpack.diff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p06.html">p06: Variable coefficient wave equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p07.html">p07: Accuracy of periodic spectral differentiation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p08.html">p08: Eigenvalues of harmonic oscillator <span class="math notranslate nohighlight">\(-u'' + x^2 u\)</span> on <span class="math notranslate nohighlight">\(R\)</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="p08.html">p08: Eigenvalues of harmonic oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p09.html">p09: Polynomial interpolation in equispaced and chebyshev points</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p10.html">p10: Polynomials and corresponding equipotential curves</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p11.html">p11: Chebyshev differentiation of a smooth function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p12.html">p12: Accuracy of Chebyshev spectral differentiation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p13.html">p13: Solve linear BVP <span class="math notranslate nohighlight">\(u_{xx} = \exp(4x)\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP <span class="math notranslate nohighlight">\(u_{xx} = exp(u)\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span> by iteration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p15.html">p15 - Solve eigenvalue BVP <span class="math notranslate nohighlight">\(u_{xx} = \lambda u\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation on [-1,1]x[-1,1] with u=0 on boundary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p13.html">p13: Solve linear BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p15.html">p15 - Solve eigenvalue BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation in 2-D</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">p17: Helmholtz Equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p18.html">p18: Chebyshev differentiation via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p19.html">p19: Second order Wave Equation on Chebyshev Grid</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p20.html">Second order wave equation in 2-D via FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p20.html">p20: Second order wave equation in 2-D via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p21.html">p21: Eigenvalues of Mathieu operator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p22.html">p22: 5’th eigenvector of Airy equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of perturbed Laplacian on [-1,1]x[-1,1]</a></li>
@@ -413,7 +413,7 @@ k = 9, \qquad f(x,y) = \exp (-10[(y-1)^2 +(x-1/2)^2])
 <span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span><span class="n">subplot</span><span class="p">,</span><span class="n">plot</span><span class="p">,</span><span class="n">title</span><span class="p">,</span><span class="n">axis</span><span class="p">,</span><span class="n">xlabel</span><span class="p">,</span><span class="n">ylabel</span><span class="p">,</span><span class="n">contour</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
 <span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">solve</span>
-<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp2d</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">RectBivariateSpline</span>
 </pre></div>
 </div>
 </div>
@@ -435,7 +435,7 @@ k = 9, \qquad f(x,y) = \exp (-10[(y-1)^2 +(x-1/2)^2])
 <span class="p">[</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">]</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 <span class="n">value</span> <span class="o">=</span> <span class="n">uu</span><span class="p">[</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span>
 
-<span class="n">f</span> <span class="o">=</span> <span class="n">interp2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">uu</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">RectBivariateSpline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">uu</span><span class="p">)</span>
 <span class="n">xxx</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
 <span class="n">uuu</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xxx</span><span class="p">,</span><span class="n">xxx</span><span class="p">)</span>
 
@@ -452,34 +452,8 @@ k = 9, \qquad f(x,y) = \exp (-10[(y-1)^2 +(x-1/2)^2])
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">16</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="p">[</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">]</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">value</span> <span class="o">=</span> <span class="n">uu</span><span class="p">[</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">16</span> <span class="n">f</span> <span class="o">=</span> <span class="n">interp2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">uu</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">xxx</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">uuu</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xxx</span><span class="p">,</span><span class="n">xxx</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/scipy/interpolate/_interpolate.py:129,</span> in <span class="ni">interp2d.__init__</span><span class="nt">(self, x, y, z, kind, copy, bounds_error, fill_value)</span>
-<span class="g g-Whitespace">    </span><span class="mi">127</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">128</span>              <span class="n">fill_value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">129</span>     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">err_mesg</span><span class="p">)</span>
-
-<span class="ne">NotImplementedError</span>: `interp2d` has been removed in SciPy 1.14.0.
-
-<span class="n">For</span> <span class="n">legacy</span> <span class="n">code</span><span class="p">,</span> <span class="n">nearly</span> <span class="n">bug</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">bug</span> <span class="n">compatible</span> <span class="n">replacements</span> <span class="n">are</span>
-<span class="err">`</span><span class="n">RectBivariateSpline</span><span class="err">`</span> <span class="n">on</span> <span class="n">regular</span> <span class="n">grids</span><span class="p">,</span> <span class="ow">and</span> <span class="err">`</span><span class="n">bisplrep</span><span class="err">`</span><span class="o">/</span><span class="err">`</span><span class="n">bisplev</span><span class="err">`</span> <span class="k">for</span>
-<span class="n">scattered</span> <span class="mi">2</span><span class="n">D</span> <span class="n">data</span><span class="o">.</span>
-
-<span class="n">In</span> <span class="n">new</span> <span class="n">code</span><span class="p">,</span> <span class="k">for</span> <span class="n">regular</span> <span class="n">grids</span> <span class="n">use</span> <span class="err">`</span><span class="n">RegularGridInterpolator</span><span class="err">`</span> <span class="n">instead</span><span class="o">.</span>
-<span class="n">For</span> <span class="n">scattered</span> <span class="n">data</span><span class="p">,</span> <span class="n">prefer</span> <span class="err">`</span><span class="n">LinearNDInterpolator</span><span class="err">`</span> <span class="ow">or</span>
-<span class="err">`</span><span class="n">CloughTocher2DInterpolator</span><span class="err">`</span><span class="o">.</span>
-
-<span class="n">For</span> <span class="n">more</span> <span class="n">details</span> <span class="n">see</span>
-<span class="ne">https</span>://scipy.github.io/devdocs/tutorial/interpolate/interp_transition_guide.html
-</pre></div>
-</div>
+<img alt="_images/9aac918d584a885bf0e83363a2268f6aa9652863f850f8defa6b0f2ab7b1601a.svg" src="_images/9aac918d584a885bf0e83363a2268f6aa9652863f850f8defa6b0f2ab7b1601a.svg" />
+<img alt="_images/6b794bdd95d6b8eb4d70510775e872360f1d0558894c4f80991addc3ee9de1af.svg" src="_images/6b794bdd95d6b8eb4d70510775e872360f1d0558894c4f80991addc3ee9de1af.svg" />
 </div>
 </div>
 </section>
@@ -520,7 +494,7 @@ k = 9, \qquad f(x,y) = \exp (-10[(y-1)^2 +(x-1/2)^2])
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">p16: Poisson equation on [-1,1]x[-1,1] with u=0 on boundary</p>
+        <p class="prev-next-title">p16: Poisson equation in 2-D</p>
       </div>
     </a>
     <a class="right-next"

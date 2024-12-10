@@ -7,7 +7,7 @@ Traceback (most recent call last):
   File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+  File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/asyncio/base_events.py", line 686, in run_until_complete
     return future.result()
            ^^^^^^^^^^^^^^^
   File "/opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
@@ -45,14 +45,6 @@ for i in range(4):
     
 ------------------
 
------ stderr -----
-<>:24: SyntaxWarning: invalid escape sequence '\p'
-<>:24: SyntaxWarning: invalid escape sequence '\p'
-/var/folders/tc/17nf7v3j53jgg4db9vxl40g00000gn/T/ipykernel_6498/3353260806.py:24: SyntaxWarning: invalid escape sequence '\p'
-  title("eig = %18.12f $\pi^2/4$"%(D[i]/(pi**2/4)))
-/var/folders/tc/17nf7v3j53jgg4db9vxl40g00000gn/T/ipykernel_6498/3353260806.py:24: SyntaxWarning: invalid escape sequence '\p'
-  title("eig = %18.12f $\pi^2/4$"%(D[i]/(pi**2/4)))
-------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNotImplementedError[0m                       Traceback (most recent call last)
