@@ -1,0 +1,4 @@
+# Spectral Methods
+
+```{tableofcontents}
+```

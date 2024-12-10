@@ -1,0 +1,38 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: front
+chapters:
+- file: p01.ipynb
+- file: p02.ipynb
+- file: p03.ipynb
+- file: p04.ipynb
+- file: p05.ipynb
+- file: p05b.ipynb
+- file: p05c.ipynb
+- file: p06.ipynb
+- file: p07.ipynb
+- file: p08.ipynb
+- file: p09.ipynb
+- file: p10.ipynb
+- file: p11.ipynb
+- file: p12.ipynb
+- file: p13.ipynb
+- file: p14.ipynb
+- file: p15.ipynb
+- file: p16.ipynb
+- file: p17.ipynb
+- file: p18.ipynb
+- file: p19.ipynb
+- file: p20.ipynb
+- file: p21.ipynb
+- file: p22.ipynb
+- file: p23.ipynb
+- file: p24.ipynb
+- file: p25.ipynb
+- file: p26.ipynb
+- file: p27.ipynb
+- file: p30.ipynb
+- file: p32.ipynb
+- file: p33.ipynb

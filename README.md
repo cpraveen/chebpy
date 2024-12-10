@@ -13,3 +13,20 @@ Run the code in colab: [![Colab](https://colab.research.google.com/assets/colab-
 Matlab versions of the code are available here
 
 https://github.com/cpraveen/spectral_matlab
+
+## Building jupyter-book
+
+Install 
+
+```shell
+conda install jupyter-book ghp-import
+```
+
+Build html and publish
+
+```shell
+git checkout git@github.com:cpraveen/chebpy
+jb build chebpy
+cd chebpy
+ghp-import -n -p -f _build/html
+```
