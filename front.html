@@ -368,7 +368,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -384,6 +386,14 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of contents</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -395,13 +405,15 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="spectral-methods">
 <h1>Spectral Methods<a class="headerlink" href="#spectral-methods" title="Link to this heading">#</a></h1>
-<p>These examples are based on the book of L. N. Trefethen.</p>
+<p>These examples are based on the book L. N. Trefethen. I have rewritten these codes in Python.</p>
 <p>For nbviewer links to these files, see here</p>
-<p>http://cpraveen.github.io/teaching/chebpy.html</p>
+<p><a class="reference external" href="http://cpraveen.github.io/teaching/chebpy.html">http://cpraveen.github.io/teaching/chebpy.html</a></p>
 <p>Run the code in binder: <a class="reference external" href="https://mybinder.org/v2/gh/cpraveen/chebpy/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p>Run the code in colab: <a class="reference external" href="https://colab.research.google.com/github/cpraveen/chebpy"><img alt="Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p>Matlab versions of the code are available here</p>
-<p>https://github.com/cpraveen/spectral_matlab</p>
+<p><a class="github reference external" href="https://github.com/cpraveen/spectral_matlab">cpraveen/spectral_matlab</a></p>
+<section id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="p01.html">p01: Convergence of fourth order finite differences</a></li>
@@ -438,6 +450,7 @@
 <li class="toctree-l1"><a class="reference internal" href="p33.html">p33: Solve linear BVP, Neumann bc</a></li>
 </ul>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -485,6 +498,22 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of contents</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
