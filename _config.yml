@@ -23,7 +23,7 @@ bibtex_bibfiles:
 # Information about where the book exists on the web
 repository:
   url: https://github.com/cpraveen/chebpy  # Online location of your book
-  path_to_book: docs  # Optional path to your book, relative to the repository root
+  path_to_book: docs  # Optional path to your book, relative to repository root
   branch: master  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book
@@ -47,3 +47,5 @@ parse:
     # including those that are enabled by default!
     - amsmath
     - dollarmath
+
+only_build_toc_files: true

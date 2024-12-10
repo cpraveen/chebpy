@@ -1,5 +1,9 @@
 # chebpy: Spectral and Chebyshev methods in Python
 
+See this as a jupyter-book here
+
+https://cpraveen.github.io/chebpy
+
 These examples are based on the book of L. N. Trefethen.
 
 For nbviewer links to these files, see here
