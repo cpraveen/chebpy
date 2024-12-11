@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>p17: Helmholtz Equation &#8212; Spectral Methods</title>
+    <title>p17: Helmholtz Equation in 2-D &#8212; Spectral Methods</title>
   
   
   
@@ -189,13 +189,14 @@
 <li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p15.html">p15 - Solve eigenvalue BVP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation in 2-D</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">p17: Helmholtz Equation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">p17: Helmholtz Equation in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p18.html">p18: Chebyshev differentiation via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p19.html">p19: Second order Wave Equation on Chebyshev Grid</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p20.html">p20: Second order wave equation in 2-D via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p21.html">p21: Eigenvalues of Mathieu operator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p22.html">p22: 5’th eigenvector of Airy equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of perturbed Laplacian on [-1,1]x[-1,1]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of Laplacian in 2-D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p23a.html">p23a: Eigenvalues of perturbed Laplacian in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p24.html">p24: Pseudospectra of Davies’s complex harmonic oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p25.html">p25: Stability regions for ODE formulas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p26.html">p26: Eigenvalues of 2nd order Chebyshev diff. matrix</a></li>
@@ -378,7 +379,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>p17: Helmholtz Equation</h1>
+    <h1>p17: Helmholtz Equation in 2-D</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,8 +393,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="p17-helmholtz-equation">
-<h1>p17: Helmholtz Equation<a class="headerlink" href="#p17-helmholtz-equation" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="p17-helmholtz-equation-in-2-d">
+<h1>p17: Helmholtz Equation in 2-D<a class="headerlink" href="#p17-helmholtz-equation-in-2-d" title="Link to this heading">#</a></h1>
 <div class="math notranslate nohighlight">
 \[ 
 u_{xx} + u_{yy} + k^{2}u = f, \qquad \mbox{on} \qquad [-1,1] \times [-1,1]
@@ -405,8 +406,7 @@ k = 9, \qquad f(x,y) = \exp (-10[(y-1)^2 +(x-1/2)^2])
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
 <span class="kn">from</span> <span class="nn">chebPy</span> <span class="kn">import</span> <span class="n">cheb</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">meshgrid</span><span class="p">,</span><span class="n">sin</span><span class="p">,</span><span class="n">dot</span><span class="p">,</span><span class="n">eye</span><span class="p">,</span><span class="n">kron</span><span class="p">,</span><span class="n">zeros</span><span class="p">,</span><span class="n">reshape</span><span class="p">,</span><span class="n">exp</span><span class="p">,</span><span class="n">linspace</span>
 <span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
@@ -421,9 +421,9 @@ k = 9, \qquad f(x,y) = \exp (-10[(y-1)^2 +(x-1/2)^2])
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">24</span><span class="p">;</span> <span class="n">D</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">cheb</span><span class="p">(</span><span class="n">N</span><span class="p">);</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
-<span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">])</span>
-<span class="n">xx</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="p">,(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">yy</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">yy</span><span class="p">,(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">],</span><span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="p">,(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">yy</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">yy</span><span class="p">,(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="p">((</span><span class="n">yy</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">xx</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="p">))</span>
 <span class="n">D2</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">D</span><span class="p">);</span> <span class="n">D2</span> <span class="o">=</span> <span class="n">D2</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">];</span> <span class="n">I</span> <span class="o">=</span> <span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">k</span> <span class="o">=</span> <span class="mi">9</span>
@@ -431,8 +431,8 @@ k = 9, \qquad f(x,y) = \exp (-10[(y-1)^2 +(x-1/2)^2])
 <span class="c1"># Solve Lu=f</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
 <span class="c1"># Convert 1-d vectors to 2-d</span>
-<span class="n">uu</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span> <span class="n">uu</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">u</span><span class="p">,(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-<span class="p">[</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">]</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">uu</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span> <span class="n">uu</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">u</span><span class="p">,(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="p">[</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">]</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
 <span class="n">value</span> <span class="o">=</span> <span class="n">uu</span><span class="p">[</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span>
 
 <span class="n">f</span> <span class="o">=</span> <span class="n">RectBivariateSpline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">uu</span><span class="p">)</span>
@@ -441,7 +441,7 @@ k = 9, \qquad f(x,y) = \exp (-10[(y-1)^2 +(x-1/2)^2])
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
-<span class="p">[</span><span class="n">X</span> <span class="p">,</span><span class="n">Y</span><span class="p">]</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">xxx</span><span class="p">,</span><span class="n">xxx</span><span class="p">)</span>
+<span class="p">[</span><span class="n">X</span> <span class="p">,</span><span class="n">Y</span><span class="p">]</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">xxx</span><span class="p">,</span><span class="n">xxx</span><span class="p">,</span><span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">uuu</span><span class="p">,</span><span class="n">rstride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">cstride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 <span class="n">title</span><span class="p">(</span><span class="s2">&quot;$u(0,0)$=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
 <span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">);</span> <span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">);</span>
@@ -452,8 +452,8 @@ k = 9, \qquad f(x,y) = \exp (-10[(y-1)^2 +(x-1/2)^2])
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9aac918d584a885bf0e83363a2268f6aa9652863f850f8defa6b0f2ab7b1601a.svg" src="_images/9aac918d584a885bf0e83363a2268f6aa9652863f850f8defa6b0f2ab7b1601a.svg" />
-<img alt="_images/6b794bdd95d6b8eb4d70510775e872360f1d0558894c4f80991addc3ee9de1af.svg" src="_images/6b794bdd95d6b8eb4d70510775e872360f1d0558894c4f80991addc3ee9de1af.svg" />
+<img alt="_images/2bf910d458f8625a32679b4e91790e8b469ea29c88d471ce39ca291fd2f61cc1.svg" src="_images/2bf910d458f8625a32679b4e91790e8b469ea29c88d471ce39ca291fd2f61cc1.svg" />
+<img alt="_images/2cb4e02a4eb86bb6646012a3c014a84920183b6eaec10080c2ebb981e973cc71.svg" src="_images/2cb4e02a4eb86bb6646012a3c014a84920183b6eaec10080c2ebb981e973cc71.svg" />
 </div>
 </div>
 </section>

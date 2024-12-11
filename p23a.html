@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>p24: Pseudospectra of Davies’s complex harmonic oscillator &#8212; Spectral Methods</title>
+    <title>p23a: Eigenvalues of perturbed Laplacian in 2-D &#8212; Spectral Methods</title>
   
   
   
@@ -60,11 +60,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'p24';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'p23a';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="p25: Stability regions for ODE formulas" href="p25.html" />
-    <link rel="prev" title="p23a: Eigenvalues of perturbed Laplacian in 2-D" href="p23a.html" />
+    <link rel="next" title="p24: Pseudospectra of Davies’s complex harmonic oscillator" href="p24.html" />
+    <link rel="prev" title="p23: Eigenvalues of Laplacian in 2-D" href="p23.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -194,8 +196,8 @@
 <li class="toctree-l1"><a class="reference internal" href="p21.html">p21: Eigenvalues of Mathieu operator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p22.html">p22: 5’th eigenvector of Airy equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of Laplacian in 2-D</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p23a.html">p23a: Eigenvalues of perturbed Laplacian in 2-D</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">p24: Pseudospectra of Davies’s complex harmonic oscillator</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">p23a: Eigenvalues of perturbed Laplacian in 2-D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p24.html">p24: Pseudospectra of Davies’s complex harmonic oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p25.html">p25: Stability regions for ODE formulas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p26.html">p26: Eigenvalues of 2nd order Chebyshev diff. matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p27.html">p27: Solve KdV equation</a></li>
@@ -273,7 +275,7 @@
       
       
       
-      <li><a href="https://github.com/cpraveen/chebpy/issues/new?title=Issue%20on%20page%20%2Fp24.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/cpraveen/chebpy/issues/new?title=Issue%20on%20page%20%2Fp23a.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -303,7 +305,7 @@
       
       
       
-      <li><a href="_sources/p24.ipynb" target="_blank"
+      <li><a href="_sources/p23a.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -377,7 +379,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>p24: Pseudospectra of Davies’s complex harmonic oscillator</h1>
+    <h1>p23a: Eigenvalues of perturbed Laplacian in 2-D</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,45 +393,64 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="p24-pseudospectra-of-davies-s-complex-harmonic-oscillator">
-<h1>p24: Pseudospectra of Davies’s complex harmonic oscillator<a class="headerlink" href="#p24-pseudospectra-of-davies-s-complex-harmonic-oscillator" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="p23a-eigenvalues-of-perturbed-laplacian-in-2-d">
+<h1>p23a: Eigenvalues of perturbed Laplacian in 2-D<a class="headerlink" href="#p23a-eigenvalues-of-perturbed-laplacian-in-2-d" title="Link to this heading">#</a></h1>
+<p>We solve the following eigenvalue problem</p>
+<div class="math notranslate nohighlight">
+\[
+-(u_{xx} + u_{yy}) + f(x,y) u = \lambda u, \qquad -1 &lt; x,y &lt; 1, \qquad u=0 \quad \mbox{on boundary}
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+f(x,y) = \exp(20(y-x-1))
+\]</div>
+<p>The code is almost same as p23, with only one extra line.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;svg&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
 <span class="kn">from</span> <span class="nn">chebPy</span> <span class="kn">import</span> <span class="n">cheb</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">dot</span><span class="p">,</span><span class="n">argsort</span><span class="p">,</span><span class="n">zeros</span><span class="p">,</span><span class="n">real</span><span class="p">,</span><span class="n">imag</span><span class="p">,</span><span class="n">meshgrid</span><span class="p">,</span><span class="n">eye</span><span class="p">,</span><span class="n">diag</span><span class="p">,</span><span class="n">arange</span>
-<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">solve</span><span class="p">,</span><span class="n">eig</span><span class="p">,</span><span class="n">svd</span><span class="p">,</span><span class="n">svdvals</span>
-<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span><span class="n">plot</span><span class="p">,</span><span class="n">title</span><span class="p">,</span><span class="n">axis</span><span class="p">,</span><span class="n">contour</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">meshgrid</span><span class="p">,</span><span class="n">dot</span><span class="p">,</span><span class="n">eye</span><span class="p">,</span><span class="n">kron</span><span class="p">,</span><span class="n">zeros</span><span class="p">,</span><span class="n">reshape</span><span class="p">,</span><span class="n">pi</span><span class="p">,</span><span class="n">real</span><span class="p">,</span><span class="n">imag</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">diag</span><span class="p">,</span><span class="n">exp</span><span class="p">,</span><span class="n">argsort</span><span class="p">,</span><span class="n">linspace</span><span class="p">,</span><span class="n">inf</span>
+<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span><span class="n">subplot</span><span class="p">,</span><span class="n">plot</span><span class="p">,</span><span class="n">title</span><span class="p">,</span><span class="n">contour</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">eig</span><span class="p">,</span><span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">RegularGridInterpolator</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">70</span><span class="p">;</span> <span class="n">D</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">cheb</span><span class="p">(</span><span class="n">N</span><span class="p">);</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">];</span>
-<span class="n">L</span> <span class="o">=</span> <span class="mf">6.0</span><span class="p">;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">L</span><span class="o">*</span><span class="n">x</span><span class="p">;</span> <span class="n">D</span> <span class="o">=</span> <span class="n">D</span><span class="o">/</span><span class="n">L</span><span class="p">;</span>
-<span class="n">A</span> <span class="o">=</span> <span class="o">-</span><span class="n">dot</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">D</span><span class="p">);</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">3</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="n">diag</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">);</span>
-<span class="n">lam</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">real</span><span class="p">(</span><span class="n">lam</span><span class="p">),</span><span class="n">imag</span><span class="p">(</span><span class="n">lam</span><span class="p">),</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
-<span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up tensor product Laplacian and compute 4 eigenmodes</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span> <span class="n">D</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">cheb</span><span class="p">(</span><span class="n">N</span><span class="p">);</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+<span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">],</span><span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="p">,(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">yy</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">yy</span><span class="p">,(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">D2</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">D</span><span class="p">);</span> <span class="n">D2</span> <span class="o">=</span> <span class="n">D2</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">];</span> <span class="n">I</span> <span class="o">=</span> <span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="o">-</span><span class="n">kron</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">D2</span><span class="p">)</span> <span class="o">-</span> <span class="n">kron</span><span class="p">(</span><span class="n">D2</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">L</span> <span class="o">+</span> <span class="n">diag</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="p">(</span><span class="n">yy</span><span class="o">-</span><span class="n">xx</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span> <span class="c1"># Only this line extra compared to p23</span>
+<span class="n">D</span><span class="p">,</span><span class="n">V</span> <span class="o">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">L</span><span class="p">);</span> <span class="n">D</span> <span class="o">=</span> <span class="n">real</span><span class="p">(</span><span class="n">D</span><span class="p">);</span> <span class="n">V</span> <span class="o">=</span> <span class="n">real</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">ii</span> <span class="o">=</span> <span class="n">argsort</span><span class="p">(</span><span class="n">D</span><span class="p">);</span> <span class="n">ii</span> <span class="o">=</span> <span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">];</span> <span class="n">D</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">ii</span><span class="p">];</span> <span class="n">V</span> <span class="o">=</span> <span class="n">V</span><span class="p">[:,</span><span class="n">ii</span><span class="p">]</span>
 
-<span class="n">h</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># Smaller the value, finer the plot</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">h</span><span class="p">);</span> <span class="n">y</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">h</span><span class="p">);</span> <span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">);</span>
-<span class="n">zz</span> <span class="o">=</span> <span class="n">xx</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">yy</span><span class="p">;</span>
-<span class="n">I</span> <span class="o">=</span> <span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span> <span class="n">sigmin</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span> 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)):</span>
-        <span class="n">sigmin</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">svdvals</span><span class="p">(</span><span class="n">zz</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">I</span> <span class="o">-</span> <span class="n">A</span><span class="p">));</span>
+<span class="c1"># Reshape them to 2D grid, interpolate to finer grid, and plot</span>
+<span class="n">fine</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="kc">True</span><span class="p">);</span>
+<span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">fine</span><span class="p">,</span><span class="n">fine</span><span class="p">,</span><span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+<span class="n">uu</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
 
-<span class="n">levels</span> <span class="o">=</span> <span class="mf">10.0</span><span class="o">**</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">4.5</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
-<span class="n">contour</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="n">sigmin</span><span class="p">,</span><span class="n">levels</span><span class="p">,</span><span class="n">colors</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">);</span>
+<span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">uu</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">V</span><span class="p">[:,</span><span class="n">i</span><span class="p">],(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+    <span class="n">uu</span> <span class="o">=</span> <span class="n">uu</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="n">inf</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">RegularGridInterpolator</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span><span class="n">uu</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">)</span>
+    <span class="n">uuu</span> <span class="o">=</span> <span class="n">f</span><span class="p">((</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">))</span>
+    <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">contour</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">uuu</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">title</span><span class="p">(</span><span class="s2">&quot;eig = </span><span class="si">%18.12f</span><span class="s2"> $\pi^2/4$&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">4</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f2b716e74f97870ddbe1c6a915596c93b8b4f4392f5acefe52bc913c10678af8.svg" src="_images/f2b716e74f97870ddbe1c6a915596c93b8b4f4392f5acefe52bc913c10678af8.svg" />
+<img alt="_images/a6c59d26e7e6cb7bb5985a7a09c41d420867c78927023d958b3fe7017589b612.svg" src="_images/a6c59d26e7e6cb7bb5985a7a09c41d420867c78927023d958b3fe7017589b612.svg" />
 </div>
 </div>
 </section>
@@ -465,20 +486,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="p23a.html"
+       href="p23.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">p23a: Eigenvalues of perturbed Laplacian in 2-D</p>
+        <p class="prev-next-title">p23: Eigenvalues of Laplacian in 2-D</p>
       </div>
     </a>
     <a class="right-next"
-       href="p25.html"
+       href="p24.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">p25: Stability regions for ODE formulas</p>
+        <p class="prev-next-title">p24: Pseudospectra of Davies’s complex harmonic oscillator</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

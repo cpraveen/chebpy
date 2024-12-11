@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>p23: Eigenvalues of perturbed Laplacian on [-1,1]x[-1,1] &#8212; Spectral Methods</title>
+    <title>p23: Eigenvalues of Laplacian in 2-D &#8212; Spectral Methods</title>
   
   
   
@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'p23';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="p24: Pseudospectra of Davies’s complex harmonic oscillator" href="p24.html" />
+    <link rel="next" title="p23a: Eigenvalues of perturbed Laplacian in 2-D" href="p23a.html" />
     <link rel="prev" title="p22: 5’th eigenvector of Airy equation" href="p22.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -189,13 +189,14 @@
 <li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p15.html">p15 - Solve eigenvalue BVP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation in 2-D</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p17.html">p17: Helmholtz Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p17.html">p17: Helmholtz Equation in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p18.html">p18: Chebyshev differentiation via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p19.html">p19: Second order Wave Equation on Chebyshev Grid</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p20.html">p20: Second order wave equation in 2-D via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p21.html">p21: Eigenvalues of Mathieu operator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p22.html">p22: 5’th eigenvector of Airy equation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">p23: Eigenvalues of perturbed Laplacian on [-1,1]x[-1,1]</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">p23: Eigenvalues of Laplacian in 2-D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p23a.html">p23a: Eigenvalues of perturbed Laplacian in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p24.html">p24: Pseudospectra of Davies’s complex harmonic oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p25.html">p25: Stability regions for ODE formulas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p26.html">p26: Eigenvalues of 2nd order Chebyshev diff. matrix</a></li>
@@ -378,7 +379,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>p23: Eigenvalues of perturbed Laplacian on [-1,1]x[-1,1]</h1>
+    <h1>p23: Eigenvalues of Laplacian in 2-D</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,26 +393,22 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="p23-eigenvalues-of-perturbed-laplacian-on-1-1-x-1-1">
-<h1>p23: Eigenvalues of perturbed Laplacian on [-1,1]x[-1,1]<a class="headerlink" href="#p23-eigenvalues-of-perturbed-laplacian-on-1-1-x-1-1" title="Link to this heading">#</a></h1>
-<p>We solve the following eigenvalue problem
-$<span class="math notranslate nohighlight">\(
--(u_{xx} + u_{yy}) + f(x,y) u = \lambda u, \qquad -1 &lt; x,y &lt; 1, \qquad u=0 \quad \mbox{on boundary}
-\)</span><span class="math notranslate nohighlight">\(
-where
-\)</span><span class="math notranslate nohighlight">\(
-f(x,y) = \exp(20(y-x-1))
-\)</span>$</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="p23-eigenvalues-of-laplacian-in-2-d">
+<h1>p23: Eigenvalues of Laplacian in 2-D<a class="headerlink" href="#p23-eigenvalues-of-laplacian-in-2-d" title="Link to this heading">#</a></h1>
+<p>We solve the following eigenvalue problem</p>
+<div class="math notranslate nohighlight">
+\[
+-(u_{xx} + u_{yy}) = \lambda u, \qquad -1 &lt; x,y &lt; 1, \qquad u=0 \quad \mbox{on boundary}
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
 <span class="kn">from</span> <span class="nn">chebPy</span> <span class="kn">import</span> <span class="n">cheb</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">meshgrid</span><span class="p">,</span><span class="n">dot</span><span class="p">,</span><span class="n">eye</span><span class="p">,</span><span class="n">kron</span><span class="p">,</span><span class="n">zeros</span><span class="p">,</span><span class="n">reshape</span><span class="p">,</span><span class="n">pi</span><span class="p">,</span><span class="n">real</span><span class="p">,</span><span class="n">imag</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">diag</span><span class="p">,</span><span class="n">exp</span><span class="p">,</span><span class="n">argsort</span><span class="p">,</span><span class="n">linspace</span><span class="p">,</span><span class="n">inf</span>
 <span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span><span class="n">subplot</span><span class="p">,</span><span class="n">plot</span><span class="p">,</span><span class="n">title</span><span class="p">,</span><span class="n">contour</span>
 <span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">eig</span><span class="p">,</span><span class="n">norm</span>
-<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp2d</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">RegularGridInterpolator</span>
 </pre></div>
 </div>
 </div>
@@ -420,64 +417,33 @@ f(x,y) = \exp(20(y-x-1))
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up tensor product Laplacian and compute 4 eigenmodes</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span> <span class="n">D</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">cheb</span><span class="p">(</span><span class="n">N</span><span class="p">);</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
-<span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">])</span>
-<span class="n">xx</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="p">,(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">yy</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">yy</span><span class="p">,(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">xx</span><span class="p">,</span><span class="n">yy</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">],</span><span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="p">,(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">yy</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">yy</span><span class="p">,(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
 <span class="n">D2</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">D</span><span class="p">);</span> <span class="n">D2</span> <span class="o">=</span> <span class="n">D2</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">];</span> <span class="n">I</span> <span class="o">=</span> <span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">L</span> <span class="o">=</span> <span class="o">-</span><span class="n">kron</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">D2</span><span class="p">)</span> <span class="o">-</span> <span class="n">kron</span><span class="p">(</span><span class="n">D2</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
-<span class="n">L</span> <span class="o">=</span> <span class="n">L</span> <span class="o">+</span> <span class="n">diag</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="p">(</span><span class="n">yy</span><span class="o">-</span><span class="n">xx</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
 <span class="n">D</span><span class="p">,</span><span class="n">V</span> <span class="o">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">L</span><span class="p">);</span> <span class="n">D</span> <span class="o">=</span> <span class="n">real</span><span class="p">(</span><span class="n">D</span><span class="p">);</span> <span class="n">V</span> <span class="o">=</span> <span class="n">real</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
 <span class="n">ii</span> <span class="o">=</span> <span class="n">argsort</span><span class="p">(</span><span class="n">D</span><span class="p">);</span> <span class="n">ii</span> <span class="o">=</span> <span class="n">ii</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">];</span> <span class="n">D</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">ii</span><span class="p">];</span> <span class="n">V</span> <span class="o">=</span> <span class="n">V</span><span class="p">[:,</span><span class="n">ii</span><span class="p">]</span>
 
 <span class="c1"># Reshape them to 2D grid, interpolate to finer grid, and plot</span>
 <span class="n">fine</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="kc">True</span><span class="p">);</span>
+<span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">fine</span><span class="p">,</span><span class="n">fine</span><span class="p">,</span><span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
 <span class="n">uu</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
 
 <span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
-    <span class="n">uu</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">V</span><span class="p">[:,</span><span class="n">i</span><span class="p">],(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">uu</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">V</span><span class="p">[:,</span><span class="n">i</span><span class="p">],(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
     <span class="n">uu</span> <span class="o">=</span> <span class="n">uu</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="n">inf</span><span class="p">)</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">interp2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">uu</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">)</span>
-    <span class="n">uuu</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">fine</span><span class="p">,</span><span class="n">fine</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">RegularGridInterpolator</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span><span class="n">uu</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">)</span>
+    <span class="n">uuu</span> <span class="o">=</span> <span class="n">f</span><span class="p">((</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">))</span>
     <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">contour</span><span class="p">(</span><span class="n">fine</span><span class="p">,</span><span class="n">fine</span><span class="p">,</span><span class="n">uuu</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">contour</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">uuu</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
     <span class="n">title</span><span class="p">(</span><span class="s2">&quot;eig = </span><span class="si">%18.12f</span><span class="s2"> $\pi^2/4$&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">4</span><span class="p">)))</span>
-    
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NotImplementedError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">20</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">uu</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">reshape</span><span class="p">(</span><span class="n">V</span><span class="p">[:,</span><span class="n">i</span><span class="p">],(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="n">uu</span> <span class="o">=</span> <span class="n">uu</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span><span class="n">inf</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">20</span> <span class="n">f</span> <span class="o">=</span> <span class="n">interp2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">uu</span><span class="p">,</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="n">uuu</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">fine</span><span class="p">,</span><span class="n">fine</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniforge/base/lib/python3.12/site-packages/scipy/interpolate/_interpolate.py:129,</span> in <span class="ni">interp2d.__init__</span><span class="nt">(self, x, y, z, kind, copy, bounds_error, fill_value)</span>
-<span class="g g-Whitespace">    </span><span class="mi">127</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">128</span>              <span class="n">fill_value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">129</span>     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">err_mesg</span><span class="p">)</span>
-
-<span class="ne">NotImplementedError</span>: `interp2d` has been removed in SciPy 1.14.0.
-
-<span class="n">For</span> <span class="n">legacy</span> <span class="n">code</span><span class="p">,</span> <span class="n">nearly</span> <span class="n">bug</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">bug</span> <span class="n">compatible</span> <span class="n">replacements</span> <span class="n">are</span>
-<span class="err">`</span><span class="n">RectBivariateSpline</span><span class="err">`</span> <span class="n">on</span> <span class="n">regular</span> <span class="n">grids</span><span class="p">,</span> <span class="ow">and</span> <span class="err">`</span><span class="n">bisplrep</span><span class="err">`</span><span class="o">/</span><span class="err">`</span><span class="n">bisplev</span><span class="err">`</span> <span class="k">for</span>
-<span class="n">scattered</span> <span class="mi">2</span><span class="n">D</span> <span class="n">data</span><span class="o">.</span>
-
-<span class="n">In</span> <span class="n">new</span> <span class="n">code</span><span class="p">,</span> <span class="k">for</span> <span class="n">regular</span> <span class="n">grids</span> <span class="n">use</span> <span class="err">`</span><span class="n">RegularGridInterpolator</span><span class="err">`</span> <span class="n">instead</span><span class="o">.</span>
-<span class="n">For</span> <span class="n">scattered</span> <span class="n">data</span><span class="p">,</span> <span class="n">prefer</span> <span class="err">`</span><span class="n">LinearNDInterpolator</span><span class="err">`</span> <span class="ow">or</span>
-<span class="err">`</span><span class="n">CloughTocher2DInterpolator</span><span class="err">`</span><span class="o">.</span>
-
-<span class="n">For</span> <span class="n">more</span> <span class="n">details</span> <span class="n">see</span>
-<span class="ne">https</span>://scipy.github.io/devdocs/tutorial/interpolate/interp_transition_guide.html
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x1000 with 0 Axes&gt;
-</pre></div>
-</div>
+<img alt="_images/3d83fbc8bc9d190a2c29d9759c9a10f615bbc471d34f67169ccc0d7a12eaefde.svg" src="_images/3d83fbc8bc9d190a2c29d9759c9a10f615bbc471d34f67169ccc0d7a12eaefde.svg" />
 </div>
 </div>
 </section>
@@ -522,11 +488,11 @@ f(x,y) = \exp(20(y-x-1))
       </div>
     </a>
     <a class="right-next"
-       href="p24.html"
+       href="p23a.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">p24: Pseudospectra of Davies’s complex harmonic oscillator</p>
+        <p class="prev-next-title">p23a: Eigenvalues of perturbed Laplacian in 2-D</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
