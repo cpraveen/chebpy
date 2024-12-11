@@ -184,16 +184,17 @@
 <li class="toctree-l1"><a class="reference internal" href="p11.html">p11: Chebyshev differentiation of a smooth function</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">p12: Accuracy of Chebyshev spectral differentiation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p13.html">p13: Solve linear BVP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p15.html">p15 - Solve eigenvalue BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p14.html">p14: Solve nonlinear BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p15.html">p15: Solve eigenvalue BVP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation in 2-D</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p17.html">p17: Helmholtz Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p17.html">p17: Helmholtz Equation in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p18.html">p18: Chebyshev differentiation via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p19.html">p19: Second order Wave Equation on Chebyshev Grid</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p20.html">p20: Second order wave equation in 2-D via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p21.html">p21: Eigenvalues of Mathieu operator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p22.html">p22: 5’th eigenvector of Airy equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of perturbed Laplacian on [-1,1]x[-1,1]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of Laplacian in 2-D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p23a.html">p23a: Eigenvalues of perturbed Laplacian in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p24.html">p24: Pseudospectra of Davies’s complex harmonic oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p25.html">p25: Stability regions for ODE formulas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p26.html">p26: Eigenvalues of 2nd order Chebyshev diff. matrix</a></li>
@@ -394,8 +395,7 @@
 <h1>p12: Accuracy of Chebyshev spectral differentiation<a class="headerlink" href="#p12-accuracy-of-chebyshev-spectral-differentiation" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">zeros</span><span class="p">,</span><span class="n">pi</span><span class="p">,</span><span class="n">inf</span><span class="p">,</span><span class="n">linspace</span><span class="p">,</span><span class="n">arange</span><span class="p">,</span><span class="nb">abs</span><span class="p">,</span><span class="n">dot</span><span class="p">,</span><span class="n">exp</span>
 <span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">toeplitz</span><span class="p">,</span><span class="n">norm</span>
 <span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span><span class="n">subplot</span><span class="p">,</span><span class="n">semilogy</span><span class="p">,</span><span class="n">title</span><span class="p">,</span><span class="n">xlabel</span><span class="p">,</span><span class="n">ylabel</span><span class="p">,</span><span class="n">axis</span><span class="p">,</span><span class="n">grid</span>
@@ -443,7 +443,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b83f0c634c8a51f7b4b3a298d346f10a404478ae67d65e5e93f722116f3a270a.svg" src="_images/b83f0c634c8a51f7b4b3a298d346f10a404478ae67d65e5e93f722116f3a270a.svg" />
+<img alt="_images/8f4be6a66677bbc792692f80b4ff0444a214cdd8a3e49a518ffad9dc7195d1c6.svg" src="_images/8f4be6a66677bbc792692f80b4ff0444a214cdd8a3e49a518ffad9dc7195d1c6.svg" />
 </div>
 </div>
 </section>

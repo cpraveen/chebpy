@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'p13';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="p14 - Solve nonlinear BVP" href="p14.html" />
+    <link rel="next" title="p14: Solve nonlinear BVP" href="p14.html" />
     <link rel="prev" title="p12: Accuracy of Chebyshev spectral differentiation" href="p12.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -186,16 +186,17 @@
 <li class="toctree-l1"><a class="reference internal" href="p11.html">p11: Chebyshev differentiation of a smooth function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p12.html">p12: Accuracy of Chebyshev spectral differentiation</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">p13: Solve linear BVP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p15.html">p15 - Solve eigenvalue BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p14.html">p14: Solve nonlinear BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p15.html">p15: Solve eigenvalue BVP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation in 2-D</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p17.html">p17: Helmholtz Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p17.html">p17: Helmholtz Equation in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p18.html">p18: Chebyshev differentiation via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p19.html">p19: Second order Wave Equation on Chebyshev Grid</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p20.html">p20: Second order wave equation in 2-D via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p21.html">p21: Eigenvalues of Mathieu operator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p22.html">p22: 5’th eigenvector of Airy equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of perturbed Laplacian on [-1,1]x[-1,1]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of Laplacian in 2-D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p23a.html">p23a: Eigenvalues of perturbed Laplacian in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p24.html">p24: Pseudospectra of Davies’s complex harmonic oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p25.html">p25: Stability regions for ODE formulas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p26.html">p26: Eigenvalues of 2nd order Chebyshev diff. matrix</a></li>
@@ -400,8 +401,7 @@ u_{xx} = \exp(4x), \qquad u(-1)=u(1)=0
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
 <span class="kn">from</span> <span class="nn">chebPy</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">dot</span><span class="p">,</span><span class="n">exp</span><span class="p">,</span><span class="n">zeros</span><span class="p">,</span><span class="n">sinh</span><span class="p">,</span><span class="n">cosh</span><span class="p">,</span><span class="nb">max</span><span class="p">,</span><span class="n">linspace</span><span class="p">,</span><span class="n">polyval</span><span class="p">,</span><span class="n">polyfit</span><span class="p">,</span><span class="n">inf</span>
 <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span>
@@ -428,7 +428,7 @@ u_{xx} = \exp(4x), \qquad u(-1)=u(1)=0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2a640388944aeb2ebcfbf12b252c3183a8e2969c60fe8af2e2ff7ebaa77caf29.svg" src="_images/2a640388944aeb2ebcfbf12b252c3183a8e2969c60fe8af2e2ff7ebaa77caf29.svg" />
+<img alt="_images/878e925ecc4ad89ad78b6db67800fdcf42d8b3e7220f62e701293bdd57b61ab0.svg" src="_images/878e925ecc4ad89ad78b6db67800fdcf42d8b3e7220f62e701293bdd57b61ab0.svg" />
 </div>
 </div>
 </section>
@@ -477,7 +477,7 @@ u_{xx} = \exp(4x), \qquad u(-1)=u(1)=0
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">p14 - Solve nonlinear BVP</p>
+        <p class="prev-next-title">p14: Solve nonlinear BVP</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

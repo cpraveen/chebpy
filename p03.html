@@ -186,16 +186,17 @@
 <li class="toctree-l1"><a class="reference internal" href="p11.html">p11: Chebyshev differentiation of a smooth function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p12.html">p12: Accuracy of Chebyshev spectral differentiation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p13.html">p13: Solve linear BVP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p15.html">p15 - Solve eigenvalue BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p14.html">p14: Solve nonlinear BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p15.html">p15: Solve eigenvalue BVP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation in 2-D</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p17.html">p17: Helmholtz Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p17.html">p17: Helmholtz Equation in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p18.html">p18: Chebyshev differentiation via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p19.html">p19: Second order Wave Equation on Chebyshev Grid</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p20.html">p20: Second order wave equation in 2-D via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p21.html">p21: Eigenvalues of Mathieu operator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p22.html">p22: 5’th eigenvector of Airy equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of perturbed Laplacian on [-1,1]x[-1,1]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of Laplacian in 2-D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p23a.html">p23a: Eigenvalues of perturbed Laplacian in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p24.html">p24: Pseudospectra of Davies’s complex harmonic oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p25.html">p25: Stability regions for ODE formulas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p26.html">p26: Eigenvalues of 2nd order Chebyshev diff. matrix</a></li>
@@ -419,8 +420,7 @@ v(x) = \max(0, 1-|x|/3)
 <p>Since all functions are zero away from origin, we can restrict to some finite interval, say <span class="math notranslate nohighlight">\([-10,10]\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">arange</span><span class="p">,</span><span class="n">maximum</span><span class="p">,</span><span class="nb">abs</span><span class="p">,</span><span class="n">zeros</span><span class="p">,</span><span class="n">sin</span><span class="p">,</span><span class="n">pi</span>
 <span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">subplot</span><span class="p">,</span><span class="n">figure</span><span class="p">,</span><span class="n">plot</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="n">axis</span>
 </pre></div>
@@ -454,7 +454,7 @@ v(x) = \max(0, 1-|x|/3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9bb182f1d3070a694b125a1ba88e2a11e6701936a8c9f275909d37a6950cafb5.svg" src="_images/9bb182f1d3070a694b125a1ba88e2a11e6701936a8c9f275909d37a6950cafb5.svg" />
+<img alt="_images/eba3f78f57ae22622cfb0a15eb5a084e27bf876e32888551a5c45e98fdf19de4.svg" src="_images/eba3f78f57ae22622cfb0a15eb5a084e27bf876e32888551a5c45e98fdf19de4.svg" />
 </div>
 </div>
 </section>

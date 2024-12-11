@@ -175,25 +175,26 @@
 <li class="toctree-l1"><a class="reference internal" href="p04.html">p04: Periodic spectral differentiation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p05.html">p05: Repetition of p04 via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p05b.html">p05b: Repetition of p05 via real FFT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p05c.html">p05: Repetition of p05 using scipy.fftpack.diff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p05c.html">p05c: Repetition of p05 using scipy.fftpack.diff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p06.html">p06: Variable coefficient wave equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p07.html">p07: Accuracy of periodic spectral differentiation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p08.html">p08: Eigenvalues of harmonic oscillator <span class="math notranslate nohighlight">\(-u'' + x^2 u\)</span> on <span class="math notranslate nohighlight">\(R\)</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="p08.html">p08: Eigenvalues of harmonic oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p09.html">p09: Polynomial interpolation in equispaced and chebyshev points</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p10.html">p10: Polynomials and corresponding equipotential curves</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">p11: Chebyshev differentiation of a smooth function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p12.html">p12: Accuracy of Chebyshev spectral differentiation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p13.html">p13: Solve linear BVP <span class="math notranslate nohighlight">\(u_{xx} = \exp(4x)\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="p14.html">p14 - Solve nonlinear BVP <span class="math notranslate nohighlight">\(u_{xx} = exp(u)\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span> by iteration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p15.html">p15 - Solve eigenvalue BVP <span class="math notranslate nohighlight">\(u_{xx} = \lambda u\)</span>, <span class="math notranslate nohighlight">\(u(-1)=u(1)=0\)</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation on [-1,1]x[-1,1] with u=0 on boundary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p17.html">p17: Helmholtz Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p13.html">p13: Solve linear BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p14.html">p14: Solve nonlinear BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p15.html">p15: Solve eigenvalue BVP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p16.html">p16: Poisson equation in 2-D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p17.html">p17: Helmholtz Equation in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p18.html">p18: Chebyshev differentiation via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p19.html">p19: Second order Wave Equation on Chebyshev Grid</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p20.html">Second order wave equation in 2-D via FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p20.html">p20: Second order wave equation in 2-D via FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p21.html">p21: Eigenvalues of Mathieu operator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p22.html">p22: 5’th eigenvector of Airy equation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of perturbed Laplacian on [-1,1]x[-1,1]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p23.html">p23: Eigenvalues of Laplacian in 2-D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="p23a.html">p23a: Eigenvalues of perturbed Laplacian in 2-D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p24.html">p24: Pseudospectra of Davies’s complex harmonic oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p25.html">p25: Stability regions for ODE formulas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p26.html">p26: Eigenvalues of 2nd order Chebyshev diff. matrix</a></li>
@@ -394,8 +395,7 @@
 <h1>p11: Chebyshev differentiation of a smooth function<a class="headerlink" href="#p11-chebyshev-differentiation-of-a-smooth-function" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span><span class="p">,</span><span class="n">exp</span><span class="p">,</span><span class="n">sin</span><span class="p">,</span><span class="n">dot</span>
 <span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span><span class="n">subplot</span><span class="p">,</span><span class="n">plot</span><span class="p">,</span><span class="n">title</span>
 <span class="kn">from</span> <span class="nn">chebPy</span> <span class="kn">import</span> <span class="o">*</span>
@@ -417,12 +417,12 @@
     <span class="n">error</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">u</span><span class="p">)</span> <span class="o">-</span> <span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="mf">5.0</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mf">5.0</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="mf">5.0</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
     <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">c</span><span class="p">);</span> <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">error</span><span class="p">,</span><span class="s1">&#39;o-&#39;</span><span class="p">)</span>
-    <span class="n">title</span><span class="p">(</span><span class="s1">&#39;error in u</span><span class="se">\&#39;</span><span class="s1">(x), N=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+    <span class="n">title</span><span class="p">(</span><span class="s1">&#39;error in u</span><span class="se">\&#39;</span><span class="s1">(x), N=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">N</span><span class="p">));</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/58eefd0db43f079a75a5ed29f7715f683ecad640c91c8f9c1d7695b0ea958f79.svg" src="_images/58eefd0db43f079a75a5ed29f7715f683ecad640c91c8f9c1d7695b0ea958f79.svg" />
+<img alt="_images/835a88651caee451af95e1e47bba4511b23cade3197dd7eee4b810ac44bf58be.svg" src="_images/835a88651caee451af95e1e47bba4511b23cade3197dd7eee4b810ac44bf58be.svg" />
 </div>
 </div>
 </section>
