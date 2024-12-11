@@ -26,6 +26,10 @@ Matlab versions of the code are available here
 
 <https://github.com/cpraveen/spectral_matlab>
 
+```{important}
+In the Matlab codes, the Chebyshev points are ordered from right to left, which can be counter-intuitive to the way we usually think of these problems. In the Python codes, I have ordered them from left to right. However, there may still be some bugs in some codes, so please watch out for them and write to me if you find any mistakes.
+```
+
 ## Table of contents
 
 ```{tableofcontents}
