@@ -6,6 +6,14 @@ These examples are based on the book
 
 I have rewritten these codes in Python.
 
+You can get the codes and run them on your own computer
+
+```shell
+git clone https://github.com/cpraveen/chebpy
+cd chebpy
+jupyter-lab
+```
+
 For nbviewer links to these files, see here
 
 <http://cpraveen.github.io/teaching/chebpy.html>

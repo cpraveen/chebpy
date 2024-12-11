@@ -4,7 +4,11 @@ See this as a jupyter-book here
 
 https://cpraveen.github.io/chebpy
 
-These examples are based on the book of L. N. Trefethen.
+These examples are based on the book 
+
+> L. N. Trefethen, Spectral Methods in MATLAB, SIAM.
+
+I have rewritten these codes in Python.
 
 For nbviewer links to these files, see here
 
