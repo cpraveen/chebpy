@@ -10,7 +10,7 @@ def chebfft(v):
     if N == 0:
         w = 0.0 # only when N is even!
         return w
-    x  = -cos(pi*arange(0,N+1)/N)
+    x  = cos(pi*arange(0,N+1)/N)
     ii = arange(0,N)
     V = flipud(v[1:N]); V = list(v) + list(V);
     U = real(fft(V))
