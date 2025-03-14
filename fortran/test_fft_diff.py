@@ -18,4 +18,4 @@ for N in [4,8,16,32,64,128,256]:
     du_fd = fd(u)/(2.0*dx)
     err_sp = np.max(np.abs(du_sp-du_ex))
     err_fd = np.max(np.abs(du_fd-du_ex))
-    print("N=%d, err_sp=%.4e err_fd=%.4e" % (N,err_sp,err_fd))
+    print("N=%5d   err_sp=%12.4e   err_fd=%12.4e" % (N,err_sp,err_fd))
