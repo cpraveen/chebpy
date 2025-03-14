@@ -60,7 +60,6 @@ C |       APPLIED AT X(J) WHEN THE K:TH DERIVATIVE IS APPROXIMATED             |
 C |       BY A STENCIL EXTENDING OVER X(0),X(1),...,X(N)                       |
 C +----------------------------------------------------------------------------+
       IMPLICIT REAL*8 (A-H,O-Z)
-      IMPLICIT REAL*8 (A-H,O-Z)
       DIMENSION X(0:N),C(0:N,0:M)
       C1 = 1.0D0
       C4 = X(0)-XI
