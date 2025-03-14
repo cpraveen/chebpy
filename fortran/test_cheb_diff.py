@@ -1,5 +1,4 @@
 import numpy as np 
-import spectral as cheb
 from spectral import chebpts,tocheb,fromcheb,diffcheb
 
 for N in [8,16,32,64]: 
