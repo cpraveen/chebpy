@@ -26,9 +26,11 @@
 
       open(10,file='diff.txt')
       do i=1,n
-         write(10,*) x(i),a(i),a(i)-ax(i)
+         write(10,*) x(i),ax(i),a(i),a(i)-ax(i)
       enddo
       close(10)
+
+      print*,"plot diff.txt exact=1:2, fft=1:3, error=1:3"
 
       stop
       end program main
