@@ -10,4 +10,4 @@ for N in [8,16,32,64]:
     duc = diffcheb(uc) 
     du = fromcheb(duc,x) 
     err = np.max(np.abs(du-dudx))
-    print("with N = %d error is %e" % (N, err))
+    print("with N = %5d    error is %12.4e" % (N, err))
