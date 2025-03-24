@@ -447,14 +447,25 @@ u'(x_j) \approx w_j = \frac{1}{h} \left( \frac{1}{12} u_{j-2} - \frac{2}{3} u_{j
 </div>
 </div>
 </div>
+<p>The differentiation matrix is anti-symmetric; we first construct the upper triangular part <span class="math notranslate nohighlight">\(U\)</span> and get</p>
+<div class="math notranslate nohighlight">
+\[
+D = \frac{1}{h} ( U - U^\top)
+\]</div>
+<p>The matrix is stored in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.coo_matrix.html">coo_format</a> which is a sparse matrix format.</p>
+<p>The error in the derivative approximation is measured as</p>
+<div class="math notranslate nohighlight">
+\[
+E_N = \max_{1 \le j \le N} |w_j - u_j'|
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nvec</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="n">Nvec</span><span class="p">:</span>
     <span class="n">h</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="n">N</span>
     <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="n">pi</span> <span class="o">+</span> <span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">h</span>
-    <span class="n">u</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    <span class="n">uprime</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">u</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>   <span class="c1"># function values</span>
+    <span class="n">uprime</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">u</span> <span class="c1"># Exact derivative</span>
     <span class="n">e</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
     <span class="n">e1</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
     <span class="n">e2</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="n">e2</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
@@ -462,7 +473,7 @@ u'(x_j) \approx w_j = \frac{1}{h} \left( \frac{1}{12} u_{j-2} - \frac{2}{3} u_{j
     <span class="n">D</span> <span class="o">=</span> <span class="n">coo_matrix</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">e</span><span class="o">/</span><span class="mi">3</span><span class="p">,(</span><span class="n">e1</span><span class="p">,</span><span class="n">e2</span><span class="p">)),</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">))</span> \
         <span class="o">-</span> <span class="n">coo_matrix</span><span class="p">((</span><span class="n">e</span><span class="o">/</span><span class="mi">12</span><span class="p">,(</span><span class="n">e1</span><span class="p">,</span><span class="n">e3</span><span class="p">)),</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
     <span class="n">D</span> <span class="o">=</span> <span class="p">(</span><span class="n">D</span> <span class="o">-</span> <span class="n">D</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="n">h</span>
-    <span class="n">error</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">D</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">-</span><span class="n">uprime</span><span class="p">,</span><span class="n">inf</span><span class="p">)</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">D</span><span class="nd">@u</span><span class="o">-</span><span class="n">uprime</span><span class="p">,</span><span class="n">inf</span><span class="p">)</span>
     <span class="n">loglog</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">error</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">)</span>
     
 <span class="n">semilogy</span><span class="p">(</span><span class="n">Nvec</span><span class="p">,</span><span class="n">Nvec</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">4.0</span><span class="p">),</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
@@ -473,7 +484,7 @@ u'(x_j) \approx w_j = \frac{1}{h} \left( \frac{1}{12} u_{j-2} - \frac{2}{3} u_{j
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d618d04c27e6e4eee5dac1c88cf2f66fe6e790caa44aeb1584f450818d96ad73.svg" src="_images/d618d04c27e6e4eee5dac1c88cf2f66fe6e790caa44aeb1584f450818d96ad73.svg" />
+<img alt="_images/29c02b2f6a57be8d04975532efd644cff2249b3e1e6d01baffffe5f20229f24e.svg" src="_images/29c02b2f6a57be8d04975532efd644cff2249b3e1e6d01baffffe5f20229f24e.svg" />
 </div>
 </div>
 <section id="exercise">

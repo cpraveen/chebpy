@@ -441,10 +441,7 @@ v(x) = \exp(\sin(x)), \qquad x \in [0,2\pi]
 <span class="n">N</span> <span class="o">=</span> <span class="mi">24</span><span class="p">;</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="n">N</span><span class="p">;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">col</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 <span class="n">col</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span><span class="o">**</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">/</span><span class="n">tan</span><span class="p">(</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">h</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>
-<span class="n">row</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
-<span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">col</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">col</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">D</span> <span class="o">=</span> <span class="n">toeplitz</span><span class="p">(</span><span class="n">col</span><span class="p">,</span><span class="n">row</span><span class="p">)</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">toeplitz</span><span class="p">(</span><span class="n">col</span><span class="p">,</span><span class="o">-</span><span class="n">col</span><span class="p">)</span>
 
 <span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 
@@ -473,7 +470,7 @@ v(x) = \exp(\sin(x)), \qquad x \in [0,2\pi]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d7684bd65a8dbcd35863876eac67ab40e4e1a491ac186793057dfda58d9ffb11.svg" src="_images/d7684bd65a8dbcd35863876eac67ab40e4e1a491ac186793057dfda58d9ffb11.svg" />
+<img alt="_images/1336dc8036aa17c88197fb51b17df9351536ea321d86f7bcc046b065f0579e2d.svg" src="_images/1336dc8036aa17c88197fb51b17df9351536ea321d86f7bcc046b065f0579e2d.svg" />
 </div>
 </div>
 </section>
