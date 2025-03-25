@@ -476,7 +476,7 @@ E_N = \max_{1 \le j \le N} |w_j - u_j'|
     <span class="n">error</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">D</span><span class="nd">@u</span><span class="o">-</span><span class="n">uprime</span><span class="p">,</span><span class="n">inf</span><span class="p">)</span>
     <span class="n">loglog</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">error</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">)</span>
     
-<span class="n">semilogy</span><span class="p">(</span><span class="n">Nvec</span><span class="p">,</span><span class="n">Nvec</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">4.0</span><span class="p">),</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">loglog</span><span class="p">(</span><span class="n">Nvec</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="n">Nvec</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">4.0</span><span class="p">),</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
 <span class="n">text</span><span class="p">(</span><span class="mi">105</span><span class="p">,</span><span class="mf">5e-8</span><span class="p">,</span><span class="s1">&#39;$N^{-4}$&#39;</span><span class="p">)</span>
 <span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">);</span> <span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">);</span> <span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
 <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Convergence of fourth-order finite difference&#39;</span><span class="p">);</span>
@@ -484,9 +484,10 @@ E_N = \max_{1 \le j \le N} |w_j - u_j'|
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/29c02b2f6a57be8d04975532efd644cff2249b3e1e6d01baffffe5f20229f24e.svg" src="_images/29c02b2f6a57be8d04975532efd644cff2249b3e1e6d01baffffe5f20229f24e.svg" />
+<img alt="_images/973b4323d5636e0584c2eebf2dda3b86c6ef357561176d5c2666690ff94389bc.svg" src="_images/973b4323d5636e0584c2eebf2dda3b86c6ef357561176d5c2666690ff94389bc.svg" />
 </div>
 </div>
+<p>With about 4000 points, the error is of order <span class="math notranslate nohighlight">\(10^{-12}\)</span>.</p>
 <section id="exercise">
 <h2>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h2>
 <p>Find sixth and eigth order finite differences, implement them and make error plot as above.</p>
