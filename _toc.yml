@@ -12,6 +12,7 @@ chapters:
 - file: p05b.ipynb
 - file: p05c.ipynb
 - file: p06.ipynb
+- file: acoustics_1d.ipynb
 - file: p07.ipynb
 - file: p08.ipynb
 - file: p09.ipynb
