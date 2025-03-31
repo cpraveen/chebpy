@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -190,6 +190,7 @@
 <li class="toctree-l1"><a class="reference internal" href="p05b.html">p05b: Repetition of p05 via real FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p05c.html">p05c: Repetition of p05 using scipy.fftpack.diff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p06.html">p06: Variable coefficient wave equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acoustics_1d.html">Variable coefficient acoustics equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p07.html">p07: Accuracy of periodic spectral differentiation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p08.html">p08: Eigenvalues of harmonic oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p09.html">p09: Polynomial interpolation in equispaced and chebyshev points</a></li>
@@ -455,7 +456,7 @@ k = 9, \qquad f(x,y) = \exp (-10[(y-1)^2 +(x-1/2)^2])
 <span class="n">value</span> <span class="o">=</span> <span class="n">uu</span><span class="p">[</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span>
 
 <span class="n">f</span> <span class="o">=</span> <span class="n">RectBivariateSpline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">uu</span><span class="p">)</span>
-<span class="n">xxx</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">xxx</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
 <span class="n">uuu</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xxx</span><span class="p">,</span><span class="n">xxx</span><span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
@@ -466,13 +467,13 @@ k = 9, \qquad f(x,y) = \exp (-10[(y-1)^2 +(x-1/2)^2])
 <span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">);</span> <span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">);</span>
 
 <span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">contour</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">uuu</span><span class="p">);</span>
+<span class="n">contour</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">uuu</span><span class="p">,</span><span class="n">levels</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cadd36b8d32d989d8f94d94beda494e8f19b3eb63f1ba05f9ab157f351952677.svg" src="_images/cadd36b8d32d989d8f94d94beda494e8f19b3eb63f1ba05f9ab157f351952677.svg" />
-<img alt="_images/e528969b53e0e08d277c91bb3568011890e7d73925aab00f176089d7e4dacb73.svg" src="_images/e528969b53e0e08d277c91bb3568011890e7d73925aab00f176089d7e4dacb73.svg" />
+<img alt="_images/5d1dddb11d432390a1de0fd0e4bddc40ff11c9be239fdffc5bb3ce7d04338e6d.svg" src="_images/5d1dddb11d432390a1de0fd0e4bddc40ff11c9be239fdffc5bb3ce7d04338e6d.svg" />
+<img alt="_images/281db4a596e6596d45f73e10b0a79d68a754ed0a1055c5b4c57a8663211e3af5.svg" src="_images/281db4a596e6596d45f73e10b0a79d68a754ed0a1055c5b4c57a8663211e3af5.svg" />
 </div>
 </div>
 </section>

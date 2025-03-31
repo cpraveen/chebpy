@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -190,6 +190,7 @@
 <li class="toctree-l1"><a class="reference internal" href="p05b.html">p05b: Repetition of p05 via real FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p05c.html">p05c: Repetition of p05 using scipy.fftpack.diff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p06.html">p06: Variable coefficient wave equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acoustics_1d.html">Variable coefficient acoustics equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p07.html">p07: Accuracy of periodic spectral differentiation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p08.html">p08: Eigenvalues of harmonic oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p09.html">p09: Polynomial interpolation in equispaced and chebyshev points</a></li>
@@ -421,10 +422,11 @@ u_{xx} = \lambda u, \qquad u(-1)=u(1)=0
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
-<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">dot</span><span class="p">,</span><span class="n">argsort</span><span class="p">,</span><span class="n">linspace</span><span class="p">,</span><span class="n">shape</span><span class="p">,</span><span class="n">zeros</span><span class="p">,</span><span class="n">polyval</span><span class="p">,</span><span class="n">polyfit</span><span class="p">,</span><span class="n">pi</span><span class="p">,</span><span class="n">real</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pylab</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#from numpy import dot,argsort,linspace,shape,zeros,polyval,polyfit,pi,real,arange</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">chebPy</span><span class="w"> </span><span class="kn">import</span> <span class="n">cheb</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve</span><span class="p">,</span><span class="n">eig</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="kn">import</span> <span class="n">figure</span><span class="p">,</span><span class="n">subplot</span><span class="p">,</span><span class="n">plot</span><span class="p">,</span><span class="n">title</span><span class="p">,</span><span class="n">axis</span>
+<span class="c1">#from matplotlib.pyplot import figure,subplot,plot,title,axis</span>
 </pre></div>
 </div>
 </div>
@@ -459,7 +461,20 @@ u_{xx} = \lambda u, \qquad u(-1)=u(1)=0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fe2cfe9cc34088eab15531694767917e797c845fde25f83810d80812ecd97afb.svg" src="_images/fe2cfe9cc34088eab15531694767917e797c845fde25f83810d80812ecd97afb.svg" />
+<img alt="_images/be9d8bb9e31bdec7aebe48a82b8fe22585e9cb2e8c32c0a77577351894be2957.svg" src="_images/be9d8bb9e31bdec7aebe48a82b8fe22585e9cb2e8c32c0a77577351894be2957.svg" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lexact</span> <span class="o">=</span> <span class="o">-</span> <span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">4</span> <span class="o">*</span> <span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">((</span><span class="n">lam</span> <span class="o">-</span> <span class="n">lexact</span><span class="p">)</span><span class="o">/</span><span class="n">lexact</span><span class="p">)</span>
+<span class="n">semilogy</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span> <span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">),</span> <span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Error in $</span><span class="se">\\</span><span class="s1">lambda_n$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0088766243dfa8a934002469cf8e4ac3c00b1aa3fb7bfa3934e8b81e4b5ff952.svg" src="_images/0088766243dfa8a934002469cf8e4ac3c00b1aa3fb7bfa3934e8b81e4b5ff952.svg" />
 </div>
 </div>
 </section>
