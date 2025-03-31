@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -458,7 +458,8 @@ u(x,0) = e^{-200 x^2}
 <span class="n">tmax</span> <span class="o">=</span> <span class="mi">4</span> <span class="p">;</span> <span class="n">tplot</span> <span class="o">=</span> <span class="mf">0.075</span><span class="p">;</span>
 <span class="n">plotgap</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">tplot</span><span class="o">/</span><span class="n">dt</span><span class="p">));</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">tplot</span><span class="o">/</span><span class="n">plotgap</span><span class="p">;</span>
 <span class="n">nplots</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">tmax</span><span class="o">/</span><span class="n">tplot</span><span class="p">));</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">);</span> <span class="n">vold</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">dt</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>         <span class="c1"># Solution at n</span>
+<span class="n">vold</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">dt</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Solution at n-1</span>
 <span class="n">plotdata</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">plotdata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">v</span><span class="p">)));</span>
 <span class="n">tdata</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">tdata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nplots</span><span class="p">):</span>
@@ -481,7 +482,7 @@ u(x,0) = e^{-200 x^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9bab179fc63c88b3c9d6472b8ab5589b7276d8792152e6fef045904d50f48de0.svg" src="_images/9bab179fc63c88b3c9d6472b8ab5589b7276d8792152e6fef045904d50f48de0.svg" />
+<img alt="_images/a2ecd0f610a11276d51a569a69ca555605d6ddcf3442165842bd62a58cbee734.svg" src="_images/a2ecd0f610a11276d51a569a69ca555605d6ddcf3442165842bd62a58cbee734.svg" />
 </div>
 </div>
 <p>Note that the boundary conditions do not depend on time; they are satisfied initially and we do not change these values during the time stepping. This is accomplished by setting <code class="docutils literal notranslate"><span class="pre">w[0]</span> <span class="pre">=</span> <span class="pre">w[N]</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p>
@@ -716,42 +717,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img280e962edd374d55a2e2df63cb8cdeab">
+  <img id="_anim_imgc4c1dbe18ad840af9608df6cf4ccc030">
   <div class="anim-controls">
-    <input id="_anim_slider280e962edd374d55a2e2df63cb8cdeab" type="range" class="anim-slider"
+    <input id="_anim_sliderc4c1dbe18ad840af9608df6cf4ccc030" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anim280e962edd374d55a2e2df63cb8cdeab.set_frame(parseInt(this.value));">
+           oninput="animc4c1dbe18ad840af9608df6cf4ccc030.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim280e962edd374d55a2e2df63cb8cdeab.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="animc4c1dbe18ad840af9608df6cf4ccc030.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anim280e962edd374d55a2e2df63cb8cdeab.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="animc4c1dbe18ad840af9608df6cf4ccc030.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anim280e962edd374d55a2e2df63cb8cdeab.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="animc4c1dbe18ad840af9608df6cf4ccc030.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anim280e962edd374d55a2e2df63cb8cdeab.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="animc4c1dbe18ad840af9608df6cf4ccc030.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anim280e962edd374d55a2e2df63cb8cdeab.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="animc4c1dbe18ad840af9608df6cf4ccc030.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anim280e962edd374d55a2e2df63cb8cdeab.play_animation()">
+      <button title="Play" aria-label="Play" onclick="animc4c1dbe18ad840af9608df6cf4ccc030.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anim280e962edd374d55a2e2df63cb8cdeab.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="animc4c1dbe18ad840af9608df6cf4ccc030.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anim280e962edd374d55a2e2df63cb8cdeab.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="animc4c1dbe18ad840af9608df6cf4ccc030.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anim280e962edd374d55a2e2df63cb8cdeab.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="animc4c1dbe18ad840af9608df6cf4ccc030.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select280e962edd374d55a2e2df63cb8cdeab"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectc4c1dbe18ad840af9608df6cf4ccc030"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_280e962edd374d55a2e2df63cb8cdeab"
+      <input type="radio" name="state" value="once" id="_anim_radio1_c4c1dbe18ad840af9608df6cf4ccc030"
              checked>
-      <label for="_anim_radio1_280e962edd374d55a2e2df63cb8cdeab">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_280e962edd374d55a2e2df63cb8cdeab"
+      <label for="_anim_radio1_c4c1dbe18ad840af9608df6cf4ccc030">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_c4c1dbe18ad840af9608df6cf4ccc030"
              >
-      <label for="_anim_radio2_280e962edd374d55a2e2df63cb8cdeab">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_280e962edd374d55a2e2df63cb8cdeab"
+      <label for="_anim_radio2_c4c1dbe18ad840af9608df6cf4ccc030">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_c4c1dbe18ad840af9608df6cf4ccc030"
              >
-      <label for="_anim_radio3_280e962edd374d55a2e2df63cb8cdeab">Reflect</label>
+      <label for="_anim_radio3_c4c1dbe18ad840af9608df6cf4ccc030">Reflect</label>
     </form>
   </div>
 </div>
@@ -761,9 +762,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img280e962edd374d55a2e2df63cb8cdeab";
-    var slider_id = "_anim_slider280e962edd374d55a2e2df63cb8cdeab";
-    var loop_select_id = "_anim_loop_select280e962edd374d55a2e2df63cb8cdeab";
+    var img_id = "_anim_imgc4c1dbe18ad840af9608df6cf4ccc030";
+    var slider_id = "_anim_sliderc4c1dbe18ad840af9608df6cf4ccc030";
+    var loop_select_id = "_anim_loop_selectc4c1dbe18ad840af9608df6cf4ccc030";
     var frames = new Array(53);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAA10dzkAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -13685,7 +13686,7 @@ AAEAACxDAAQAALAMARAAAMAyBEAAAADL/H8wK+EotyGogAAAAABJRU5ErkJggg==\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim280e962edd374d55a2e2df63cb8cdeab = new Animation(frames, img_id, slider_id, 50.0,
+        animc4c1dbe18ad840af9608df6cf4ccc030 = new Animation(frames, img_id, slider_id, 50.0,
                                  loop_select_id);
     }, 0);
   })()
