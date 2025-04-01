@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -417,17 +417,23 @@ document.write(`
 <h1>p14: Solve nonlinear BVP<a class="headerlink" href="#p14-solve-nonlinear-bvp" title="Link to this heading">#</a></h1>
 <div class="math notranslate nohighlight">
 \[
-u_{xx} = exp(u), \qquad u(-1)=u(1)=0
+u_{xx} = \exp(u), \qquad u(-1)=u(1)=0
 \]</div>
-<p>by iteration</p>
+<p>by Picard iteration. Set <span class="math notranslate nohighlight">\(v_{old} = 0\)</span> and solve</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{D}_N^2 v_{new} = \exp(v_{old})
+\]</div>
+<p>until convergence.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
-<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">dot</span><span class="p">,</span><span class="n">exp</span><span class="p">,</span><span class="n">zeros</span><span class="p">,</span><span class="n">linspace</span><span class="p">,</span><span class="n">polyval</span><span class="p">,</span><span class="n">polyfit</span><span class="p">,</span><span class="n">inf</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">dot</span><span class="p">,</span><span class="n">exp</span><span class="p">,</span><span class="n">zeros</span><span class="p">,</span><span class="n">linspace</span><span class="p">,</span><span class="n">inf</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">norm</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">chebPy</span><span class="w"> </span><span class="kn">import</span> <span class="n">cheb</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="kn">import</span> <span class="n">title</span><span class="p">,</span><span class="n">plot</span><span class="p">,</span><span class="n">xlabel</span><span class="p">,</span><span class="n">ylabel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.interpolate</span><span class="w"> </span><span class="kn">import</span> <span class="n">barycentric_interpolate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="kn">import</span> <span class="n">title</span><span class="p">,</span><span class="n">plot</span><span class="p">,</span><span class="n">xlabel</span><span class="p">,</span><span class="n">ylabel</span><span class="p">,</span><span class="n">legend</span>
 </pre></div>
 </div>
 </div>
@@ -450,19 +456,21 @@ u_{xx} = exp(u), \qquad u(-1)=u(1)=0
     <span class="n">it</span> <span class="o">+=</span> <span class="mi">1</span>
 
 <span class="c1"># Add bounday values to u vector</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">unew</span><span class="p">;</span> <span class="n">u</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">unew</span>
 
+<span class="c1"># Chebyshev interpolation to finer grid for plotting</span>
 <span class="n">xx</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">201</span><span class="p">)</span>
-<span class="n">uu</span> <span class="o">=</span> <span class="n">polyval</span><span class="p">(</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="n">xx</span><span class="p">)</span>    <span class="c1"># interpolate grid data</span>
+<span class="n">uu</span> <span class="o">=</span> <span class="n">barycentric_interpolate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">xx</span><span class="p">)</span>
 
 <span class="n">title</span><span class="p">(</span><span class="s1">&#39;no. steps = </span><span class="si">%d</span><span class="s1">,  u(0) = </span><span class="si">%18.14f</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">it</span><span class="p">,</span><span class="n">u</span><span class="p">[</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">])</span> <span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="n">xx</span><span class="p">,</span><span class="n">uu</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">),</span> <span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Chebyshev&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">uu</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolant&#39;</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">),</span> <span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">),</span> <span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9af6c23b32fa3bc0229f74275f4737299cb7138ce837328d586b941b9f536aa4.svg" src="_images/9af6c23b32fa3bc0229f74275f4737299cb7138ce837328d586b941b9f536aa4.svg" />
+<img alt="_images/b5fdc625f25745d4aa4c2f4be574bc4b366efa5a6810e5a96615df975692962d.svg" src="_images/b5fdc625f25745d4aa4c2f4be574bc4b366efa5a6810e5a96615df975692962d.svg" />
 </div>
 </div>
 </section>

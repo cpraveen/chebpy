@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -423,10 +423,9 @@ u_{xx} = \lambda u, \qquad u(-1)=u(1)=0
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
 <span class="kn">from</span><span class="w"> </span><span class="nn">pylab</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="c1">#from numpy import dot,argsort,linspace,shape,zeros,polyval,polyfit,pi,real,arange</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">chebPy</span><span class="w"> </span><span class="kn">import</span> <span class="n">cheb</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve</span><span class="p">,</span><span class="n">eig</span>
-<span class="c1">#from matplotlib.pyplot import figure,subplot,plot,title,axis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.interpolate</span><span class="w"> </span><span class="kn">import</span> <span class="n">barycentric_interpolate</span>
 </pre></div>
 </div>
 </div>
@@ -451,7 +450,7 @@ u_{xx} = \lambda u, \qquad u(-1)=u(1)=0
     <span class="n">subplot</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">//</span><span class="mi">5</span><span class="p">)</span>
     <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="s1">&#39;bo&#39;</span><span class="p">)</span>
     <span class="n">xx</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">501</span><span class="p">)</span>
-    <span class="n">uu</span> <span class="o">=</span> <span class="n">polyval</span><span class="p">(</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="n">xx</span><span class="p">)</span>    <span class="c1"># interpolate grid data</span>
+    <span class="n">uu</span> <span class="o">=</span> <span class="n">barycentric_interpolate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">xx</span><span class="p">)</span>
     <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;eig </span><span class="si">%d</span><span class="s1"> = </span><span class="si">%20.13f</span><span class="s1"> * $</span><span class="se">\\</span><span class="s1">pi^2/4$&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">lam</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span><span class="o">/</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\t\t</span><span class="s1"> </span><span class="si">%4.1f</span><span class="s1"> ppw&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">N</span><span class="o">/</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">j</span><span class="p">))</span>
     <span class="n">title</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
@@ -461,7 +460,7 @@ u_{xx} = \lambda u, \qquad u(-1)=u(1)=0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/be9d8bb9e31bdec7aebe48a82b8fe22585e9cb2e8c32c0a77577351894be2957.svg" src="_images/be9d8bb9e31bdec7aebe48a82b8fe22585e9cb2e8c32c0a77577351894be2957.svg" />
+<img alt="_images/b9a6ec1f84dc9e70aa798e55ec2cb474e30ddc06bec70ecabe74a1d269d0629a.svg" src="_images/b9a6ec1f84dc9e70aa798e55ec2cb474e30ddc06bec70ecabe74a1d269d0629a.svg" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -474,7 +473,7 @@ u_{xx} = \lambda u, \qquad u(-1)=u(1)=0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0088766243dfa8a934002469cf8e4ac3c00b1aa3fb7bfa3934e8b81e4b5ff952.svg" src="_images/0088766243dfa8a934002469cf8e4ac3c00b1aa3fb7bfa3934e8b81e4b5ff952.svg" />
+<img alt="_images/ff915018e25573d35e8bf9042a1b664ee7f4bdcbd2155de633ff1f953b03fce8.svg" src="_images/ff915018e25573d35e8bf9042a1b664ee7f4bdcbd2155de633ff1f953b03fce8.svg" />
 </div>
 </div>
 </section>
