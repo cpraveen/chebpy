@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'p12';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -418,7 +420,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;svg&#39;
 <span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">zeros</span><span class="p">,</span><span class="n">pi</span><span class="p">,</span><span class="n">inf</span><span class="p">,</span><span class="n">linspace</span><span class="p">,</span><span class="n">arange</span><span class="p">,</span><span class="nb">abs</span><span class="p">,</span><span class="n">dot</span><span class="p">,</span><span class="n">exp</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">toeplitz</span><span class="p">,</span><span class="n">norm</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="kn">import</span> <span class="n">figure</span><span class="p">,</span><span class="n">subplot</span><span class="p">,</span><span class="n">semilogy</span><span class="p">,</span><span class="n">title</span><span class="p">,</span><span class="n">xlabel</span><span class="p">,</span><span class="n">ylabel</span><span class="p">,</span><span class="n">axis</span><span class="p">,</span><span class="n">grid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="kn">import</span> <span class="n">figure</span><span class="p">,</span><span class="n">subplot</span><span class="p">,</span><span class="n">semilogy</span><span class="p">,</span><span class="n">loglog</span><span class="p">,</span><span class="n">title</span><span class="p">,</span><span class="n">xlabel</span><span class="p">,</span><span class="n">ylabel</span><span class="p">,</span><span class="n">axis</span><span class="p">,</span><span class="n">grid</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">chebPy</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 </div>
@@ -452,20 +454,27 @@ document.write(`
           <span class="s2">&quot;$1/(1+x^2)$&quot;</span><span class="p">,</span> <span class="s2">&quot;$x^</span><span class="si">{10}</span><span class="s2">$&quot;</span><span class="p">]</span>
 <span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">iplot</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
-    <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">iplot</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">iplot</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">semilogy</span><span class="p">(</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nmax</span><span class="o">+</span><span class="mi">1</span><span class="p">,),</span><span class="n">E</span><span class="p">[</span><span class="n">iplot</span><span class="p">][:],</span><span class="s1">&#39;.-&#39;</span><span class="p">)</span>
-    <span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">iplot</span><span class="p">])</span>
-    <span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">)</span>
-    <span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
-    <span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">Nmax</span><span class="p">,</span><span class="mf">1.0e-16</span><span class="p">,</span><span class="mf">1.0e3</span><span class="p">])</span>
-    <span class="n">grid</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="p">)</span>
+    <span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">iplot</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;, semilogy&quot;</span><span class="p">)</span>
+    <span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">),</span> <span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">),</span> <span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">iplot</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">loglog</span><span class="p">(</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">Nmax</span><span class="o">+</span><span class="mi">1</span><span class="p">,),</span><span class="n">E</span><span class="p">[</span><span class="n">iplot</span><span class="p">][:],</span><span class="s1">&#39;.-&#39;</span><span class="p">)</span>
+    <span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">iplot</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;, loglog&quot;</span><span class="p">)</span>
+    <span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">),</span> <span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">),</span> <span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3e08be8fc52a1fb169f42414e7f3bd4ce7bcc3ee8845c84f0d7d9429aaf858de.svg" src="_images/3e08be8fc52a1fb169f42414e7f3bd4ce7bcc3ee8845c84f0d7d9429aaf858de.svg" />
+<img alt="_images/007cec930cfca2dd2dc4f55eaf164f7a21b4e3f155b8b8a23c67ba09740d1342.svg" src="_images/007cec930cfca2dd2dc4f55eaf164f7a21b4e3f155b8b8a23c67ba09740d1342.svg" />
 </div>
 </div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(|x|^3\)</span>: loglog plot is straight line indicating algebraic decay of the form <span class="math notranslate nohighlight">\(N^{-p}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\exp(-x^{-2})\)</span>: loglog plot goes down faster than a straight line, indicating faster than algebraic decay.</p></li>
+<li><p><span class="math notranslate nohighlight">\(1/(1+x^2)\)</span>: semilogy plot is straight line, indicating exponential decay of the form <span class="math notranslate nohighlight">\(\exp(-\alpha N)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x^{10}\)</span>: for <span class="math notranslate nohighlight">\(N \ge 10\)</span> we get exact answer.</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
