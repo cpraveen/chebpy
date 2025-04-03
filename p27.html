@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -447,9 +447,14 @@ u_t + u u_x + u_{xxx} = 0, \qquad x \in [-\pi,\pi]
 <span class="n">N</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span> <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">/</span><span class="n">N</span><span class="o">**</span><span class="mi">2</span><span class="p">;</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
 <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="mf">25.0</span><span class="p">,</span> <span class="mf">16.0</span>
 <span class="n">u</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">A</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">cosh</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">B</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">cosh</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">B</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">u</span><span class="p">);</span> 
+<span class="n">uhat</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">u</span><span class="p">);</span> 
 <span class="n">k</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">);</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span> <span class="n">k</span><span class="p">[</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ik3</span> <span class="o">=</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">k</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">ik3</span> <span class="o">=</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">k</span><span class="o">**</span><span class="mi">3</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">rhs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">Uhat</span><span class="p">):</span>
+    <span class="n">uhat</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="n">ik3</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">Uhat</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">real</span><span class="p">(</span><span class="n">ifft</span><span class="p">(</span><span class="n">uhat</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">j</span> <span class="o">*</span> <span class="n">k</span> <span class="o">*</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">ik3</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">fft</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Time-stepping by Runge-Kutta</span>
 <span class="n">tmax</span> <span class="o">=</span> <span class="mf">0.006</span><span class="p">;</span> <span class="n">nplt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">tmax</span><span class="o">/</span><span class="mi">25</span><span class="p">)</span><span class="o">/</span><span class="n">dt</span><span class="p">))</span>
@@ -457,15 +462,16 @@ u_t + u u_x + u_{xxx} = 0, \qquad x \in [-\pi,\pi]
 <span class="n">udata</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">udata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)))</span>
 <span class="n">tdata</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nmax</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="n">dt</span><span class="p">;</span> <span class="n">g</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">j</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">k</span>
-    <span class="n">E</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">ik3</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span> <span class="n">E2</span> <span class="o">=</span> <span class="n">E</span><span class="o">**</span><span class="mi">2</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">g</span> <span class="o">*</span> <span class="n">fft</span><span class="p">(</span><span class="n">real</span><span class="p">(</span><span class="n">ifft</span><span class="p">(</span> <span class="n">v</span>         <span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">g</span> <span class="o">*</span> <span class="n">fft</span><span class="p">(</span><span class="n">real</span><span class="p">(</span><span class="n">ifft</span><span class="p">(</span> <span class="n">E</span><span class="o">*</span><span class="p">(</span><span class="n">v</span><span class="o">+</span><span class="n">a</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">g</span> <span class="o">*</span> <span class="n">fft</span><span class="p">(</span><span class="n">real</span><span class="p">(</span><span class="n">ifft</span><span class="p">(</span> <span class="n">E</span><span class="o">*</span><span class="n">v</span><span class="o">+</span><span class="n">b</span><span class="o">/</span><span class="mi">2</span>   <span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="n">g</span> <span class="o">*</span> <span class="n">fft</span><span class="p">(</span><span class="n">real</span><span class="p">(</span><span class="n">ifft</span><span class="p">(</span> <span class="n">E2</span><span class="o">*</span><span class="n">v</span><span class="o">+</span><span class="n">E</span><span class="o">*</span><span class="n">c</span>  <span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="n">E2</span><span class="o">*</span><span class="n">v</span> <span class="o">+</span> <span class="p">(</span><span class="n">E2</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">E</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span><span class="o">/</span><span class="mi">6</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="n">dt</span>
+    <span class="n">Uhat</span> <span class="o">=</span> <span class="n">uhat</span>
+    <span class="n">k1</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Uhat</span><span class="p">)</span>
+    <span class="n">k2</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">(</span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">Uhat</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">k1</span><span class="p">)</span>
+    <span class="n">k3</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">(</span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">Uhat</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">k2</span><span class="p">)</span>
+    <span class="n">k4</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span>   <span class="n">Uhat</span> <span class="o">+</span>       <span class="n">dt</span> <span class="o">*</span> <span class="n">k3</span><span class="p">)</span>
+    <span class="n">Uhat</span> <span class="o">=</span> <span class="n">Uhat</span> <span class="o">+</span> <span class="p">(</span><span class="n">dt</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">)</span>
+    <span class="n">uhat</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="n">ik3</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span> <span class="o">*</span> <span class="n">Uhat</span>
     <span class="k">if</span> <span class="n">n</span><span class="o">%</span><span class="k">nplt</span> == 0:
-        <span class="n">u</span> <span class="o">=</span> <span class="n">real</span><span class="p">(</span><span class="n">ifft</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">real</span><span class="p">(</span><span class="n">ifft</span><span class="p">(</span><span class="n">uhat</span><span class="p">))</span>
         <span class="n">udata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)))</span>
         <span class="n">tdata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
 
@@ -481,7 +487,7 @@ u_t + u u_x + u_{xxx} = 0, \qquad x \in [-\pi,\pi]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e2abfbfeca8968c0b68a8a93e09efc2892b9c17279a0d28b4f2da9deae8a1da8.svg" src="_images/e2abfbfeca8968c0b68a8a93e09efc2892b9c17279a0d28b4f2da9deae8a1da8.svg" />
+<img alt="_images/3ac8be2ba3101f00bf10a2f2f04ba5e4eccc3cbd3f60501c42d1694a8021ffaf.svg" src="_images/3ac8be2ba3101f00bf10a2f2f04ba5e4eccc3cbd3f60501c42d1694a8021ffaf.svg" />
 </div>
 </div>
 <section id="make-animation">
@@ -497,7 +503,7 @@ u_t + u u_x + u_{xxx} = 0, \qquad x \in [-\pi,\pi]
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">pi</span><span class="p">,</span> <span class="n">pi</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2000</span><span class="p">))</span>
 <span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="c1"># initialization function: plot the background of each frame</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">():</span>
@@ -511,7 +517,7 @@ u_t + u u_x + u_{xxx} = 0, \qquad x \in [-\pi,\pi]
     <span class="k">return</span> <span class="n">line</span><span class="p">,</span>
 
 <span class="c1"># call the animator.  blit=True means only re-draw the parts that have changed.</span>
-<span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">init_func</span><span class="o">=</span><span class="n">init</span><span class="p">,</span>
+<span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">init_func</span><span class="o">=</span><span class="n">init</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                <span class="n">frames</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">udata</span><span class="p">),</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1"># Save to file</span>
 <span class="k">try</span><span class="p">:</span>
@@ -520,9 +526,6 @@ u_t + u u_x + u_{xxx} = 0, \qquad x \in [-\pi,\pi]
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cannot save mp4 file&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/5432a00d9420f7ee26a73b564a04baafc1f24159f2cbdf02e4d133bc16dd2384.svg" src="_images/5432a00d9420f7ee26a73b564a04baafc1f24159f2cbdf02e4d133bc16dd2384.svg" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -718,42 +721,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_imgb4256c52eb7f4385a0caa96331fd6ccc">
+  <img id="_anim_imgf3355d07fa0b4fe2bea989021193e650">
   <div class="anim-controls">
-    <input id="_anim_sliderb4256c52eb7f4385a0caa96331fd6ccc" type="range" class="anim-slider"
+    <input id="_anim_sliderf3355d07fa0b4fe2bea989021193e650" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="animb4256c52eb7f4385a0caa96331fd6ccc.set_frame(parseInt(this.value));">
+           oninput="animf3355d07fa0b4fe2bea989021193e650.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="animb4256c52eb7f4385a0caa96331fd6ccc.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="animf3355d07fa0b4fe2bea989021193e650.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="animb4256c52eb7f4385a0caa96331fd6ccc.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="animf3355d07fa0b4fe2bea989021193e650.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="animb4256c52eb7f4385a0caa96331fd6ccc.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="animf3355d07fa0b4fe2bea989021193e650.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="animb4256c52eb7f4385a0caa96331fd6ccc.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="animf3355d07fa0b4fe2bea989021193e650.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="animb4256c52eb7f4385a0caa96331fd6ccc.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="animf3355d07fa0b4fe2bea989021193e650.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="animb4256c52eb7f4385a0caa96331fd6ccc.play_animation()">
+      <button title="Play" aria-label="Play" onclick="animf3355d07fa0b4fe2bea989021193e650.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="animb4256c52eb7f4385a0caa96331fd6ccc.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="animf3355d07fa0b4fe2bea989021193e650.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="animb4256c52eb7f4385a0caa96331fd6ccc.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="animf3355d07fa0b4fe2bea989021193e650.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="animb4256c52eb7f4385a0caa96331fd6ccc.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="animf3355d07fa0b4fe2bea989021193e650.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectb4256c52eb7f4385a0caa96331fd6ccc"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectf3355d07fa0b4fe2bea989021193e650"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_b4256c52eb7f4385a0caa96331fd6ccc"
-             >
-      <label for="_anim_radio1_b4256c52eb7f4385a0caa96331fd6ccc">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_b4256c52eb7f4385a0caa96331fd6ccc"
+      <input type="radio" name="state" value="once" id="_anim_radio1_f3355d07fa0b4fe2bea989021193e650"
              checked>
-      <label for="_anim_radio2_b4256c52eb7f4385a0caa96331fd6ccc">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_b4256c52eb7f4385a0caa96331fd6ccc"
+      <label for="_anim_radio1_f3355d07fa0b4fe2bea989021193e650">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_f3355d07fa0b4fe2bea989021193e650"
              >
-      <label for="_anim_radio3_b4256c52eb7f4385a0caa96331fd6ccc">Reflect</label>
+      <label for="_anim_radio2_f3355d07fa0b4fe2bea989021193e650">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_f3355d07fa0b4fe2bea989021193e650"
+             >
+      <label for="_anim_radio3_f3355d07fa0b4fe2bea989021193e650">Reflect</label>
     </form>
   </div>
 </div>
@@ -763,9 +766,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_imgb4256c52eb7f4385a0caa96331fd6ccc";
-    var slider_id = "_anim_sliderb4256c52eb7f4385a0caa96331fd6ccc";
-    var loop_select_id = "_anim_loop_selectb4256c52eb7f4385a0caa96331fd6ccc";
+    var img_id = "_anim_imgf3355d07fa0b4fe2bea989021193e650";
+    var slider_id = "_anim_sliderf3355d07fa0b4fe2bea989021193e650";
+    var loop_select_id = "_anim_loop_selectf3355d07fa0b4fe2bea989021193e650";
     var frames = new Array(26);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAA10dzkAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -9872,7 +9875,7 @@ S6bJuQcAAAAASUVORK5CYII=\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        animb4256c52eb7f4385a0caa96331fd6ccc = new Animation(frames, img_id, slider_id, 50.0,
+        animf3355d07fa0b4fe2bea989021193e650 = new Animation(frames, img_id, slider_id, 50.0,
                                  loop_select_id);
     }, 0);
   })()

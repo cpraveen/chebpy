@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -419,6 +419,7 @@ document.write(`
 <span class="kn">from</span><span class="w"> </span><span class="nn">chebPy</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">dot</span><span class="p">,</span><span class="n">argsort</span><span class="p">,</span><span class="n">diag</span><span class="p">,</span><span class="n">real</span><span class="p">,</span><span class="n">imag</span><span class="p">,</span><span class="n">pi</span><span class="p">,</span><span class="n">array</span><span class="p">,</span><span class="n">polyfit</span><span class="p">,</span><span class="n">polyval</span><span class="p">,</span><span class="n">zeros</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">eig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.interpolate</span><span class="w"> </span><span class="kn">import</span> <span class="n">barycentric_interpolate</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="kn">import</span> <span class="n">figure</span><span class="p">,</span><span class="n">loglog</span><span class="p">,</span><span class="n">semilogy</span><span class="p">,</span><span class="n">plot</span><span class="p">,</span><span class="n">title</span><span class="p">,</span><span class="n">ylabel</span><span class="p">,</span><span class="n">text</span><span class="p">,</span><span class="n">xlim</span>
 </pre></div>
 </div>
@@ -443,7 +444,8 @@ document.write(`
 <span class="n">vN4</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">vN4</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">V</span><span class="p">[:,</span><span class="n">N</span><span class="o">//</span><span class="mi">4</span><span class="p">];</span>
 <span class="n">xx</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.01</span><span class="p">,</span><span class="mf">0.01</span><span class="p">)</span>
-<span class="n">vv</span> <span class="o">=</span> <span class="n">polyval</span><span class="p">(</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">vN4</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="n">xx</span><span class="p">)</span>
+<span class="c1">#vv = polyval(polyfit(x,vN4,N),xx)</span>
+<span class="n">vv</span> <span class="o">=</span> <span class="n">barycentric_interpolate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">vN4</span><span class="p">,</span><span class="n">xx</span><span class="p">)</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">vv</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">vN4</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
 <span class="n">xlim</span><span class="p">((</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">))</span>
@@ -460,13 +462,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/tc/17nf7v3j53jgg4db9vxl40g00000gn/T/ipykernel_51879/2068344369.py:18: RankWarning: Polyfit may be poorly conditioned
-  vv = polyval(polyfit(x,vN4,N),xx)
-</pre></div>
-</div>
-<img alt="_images/cf9001db576586170bb15b1fae02143f4c64fe470f55f32d59bf5d43e7351bf9.svg" src="_images/cf9001db576586170bb15b1fae02143f4c64fe470f55f32d59bf5d43e7351bf9.svg" />
-<img alt="_images/d0360c95a4f6fc0f0b7d62b45d47fb7d38cea63d50365e407429f0d65c0ca7fd.svg" src="_images/d0360c95a4f6fc0f0b7d62b45d47fb7d38cea63d50365e407429f0d65c0ca7fd.svg" />
-<img alt="_images/083aaa41bb0911ea714eedd9eae17a10e396a39615687578eba53c4f1a2042fe.svg" src="_images/083aaa41bb0911ea714eedd9eae17a10e396a39615687578eba53c4f1a2042fe.svg" />
+<img alt="_images/50aa0e8d8e9d7f3eb4f8c95c95cd0a5ea0212649c79f7803d4eb83a3a093119e.svg" src="_images/50aa0e8d8e9d7f3eb4f8c95c95cd0a5ea0212649c79f7803d4eb83a3a093119e.svg" />
+<img alt="_images/b53e778e716ac726c6bec6e5e598c6efed9c11e011aeb980798cc8b5e5119581.svg" src="_images/b53e778e716ac726c6bec6e5e598c6efed9c11e011aeb980798cc8b5e5119581.svg" />
+<img alt="_images/0bc2fe8e9d5559fc2874e0817cf95850e39d576b75cedc22b275e76f89aecaa0.svg" src="_images/0bc2fe8e9d5559fc2874e0817cf95850e39d576b75cedc22b275e76f89aecaa0.svg" />
 </div>
 </div>
 </section>
