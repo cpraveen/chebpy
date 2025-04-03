@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'p27';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="p30: Spectral integration, ODE style" href="p30.html" />
+    <link rel="next" title="Burgers equation using FFT" href="burgers1.html" />
     <link rel="prev" title="p26: Eigenvalues of 2nd order Chebyshev diff. matrix" href="p26.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -213,6 +213,7 @@
 <li class="toctree-l1"><a class="reference internal" href="p25.html">p25: Stability regions for ODE formulas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p26.html">p26: Eigenvalues of 2nd order Chebyshev diff. matrix</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">p27: Solve KdV equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="burgers1.html">Burgers equation using FFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p30.html">p30: Spectral integration, ODE style</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p32.html">p32: Solve linear BVP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p33.html">p33: Solve linear BVP, Neumann bc</a></li>
@@ -487,7 +488,7 @@ u_t + u u_x + u_{xxx} = 0, \qquad x \in [-\pi,\pi]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3ac8be2ba3101f00bf10a2f2f04ba5e4eccc3cbd3f60501c42d1694a8021ffaf.svg" src="_images/3ac8be2ba3101f00bf10a2f2f04ba5e4eccc3cbd3f60501c42d1694a8021ffaf.svg" />
+<img alt="_images/3d166f0fcb8be0d7f031d93721ab8a31ef443238eda2e2d92fc5d431794a39f1.svg" src="_images/3d166f0fcb8be0d7f031d93721ab8a31ef443238eda2e2d92fc5d431794a39f1.svg" />
 </div>
 </div>
 <section id="make-animation">
@@ -721,42 +722,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_imgf3355d07fa0b4fe2bea989021193e650">
+  <img id="_anim_imgdf865c643d594610aa9cb0b98738e4a9">
   <div class="anim-controls">
-    <input id="_anim_sliderf3355d07fa0b4fe2bea989021193e650" type="range" class="anim-slider"
+    <input id="_anim_sliderdf865c643d594610aa9cb0b98738e4a9" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="animf3355d07fa0b4fe2bea989021193e650.set_frame(parseInt(this.value));">
+           oninput="animdf865c643d594610aa9cb0b98738e4a9.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="animf3355d07fa0b4fe2bea989021193e650.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="animdf865c643d594610aa9cb0b98738e4a9.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="animf3355d07fa0b4fe2bea989021193e650.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="animdf865c643d594610aa9cb0b98738e4a9.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="animf3355d07fa0b4fe2bea989021193e650.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="animdf865c643d594610aa9cb0b98738e4a9.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="animf3355d07fa0b4fe2bea989021193e650.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="animdf865c643d594610aa9cb0b98738e4a9.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="animf3355d07fa0b4fe2bea989021193e650.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="animdf865c643d594610aa9cb0b98738e4a9.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="animf3355d07fa0b4fe2bea989021193e650.play_animation()">
+      <button title="Play" aria-label="Play" onclick="animdf865c643d594610aa9cb0b98738e4a9.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="animf3355d07fa0b4fe2bea989021193e650.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="animdf865c643d594610aa9cb0b98738e4a9.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="animf3355d07fa0b4fe2bea989021193e650.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="animdf865c643d594610aa9cb0b98738e4a9.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="animf3355d07fa0b4fe2bea989021193e650.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="animdf865c643d594610aa9cb0b98738e4a9.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectf3355d07fa0b4fe2bea989021193e650"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_selectdf865c643d594610aa9cb0b98738e4a9"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_f3355d07fa0b4fe2bea989021193e650"
+      <input type="radio" name="state" value="once" id="_anim_radio1_df865c643d594610aa9cb0b98738e4a9"
              checked>
-      <label for="_anim_radio1_f3355d07fa0b4fe2bea989021193e650">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_f3355d07fa0b4fe2bea989021193e650"
+      <label for="_anim_radio1_df865c643d594610aa9cb0b98738e4a9">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_df865c643d594610aa9cb0b98738e4a9"
              >
-      <label for="_anim_radio2_f3355d07fa0b4fe2bea989021193e650">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_f3355d07fa0b4fe2bea989021193e650"
+      <label for="_anim_radio2_df865c643d594610aa9cb0b98738e4a9">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_df865c643d594610aa9cb0b98738e4a9"
              >
-      <label for="_anim_radio3_f3355d07fa0b4fe2bea989021193e650">Reflect</label>
+      <label for="_anim_radio3_df865c643d594610aa9cb0b98738e4a9">Reflect</label>
     </form>
   </div>
 </div>
@@ -766,9 +767,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_imgf3355d07fa0b4fe2bea989021193e650";
-    var slider_id = "_anim_sliderf3355d07fa0b4fe2bea989021193e650";
-    var loop_select_id = "_anim_loop_selectf3355d07fa0b4fe2bea989021193e650";
+    var img_id = "_anim_imgdf865c643d594610aa9cb0b98738e4a9";
+    var slider_id = "_anim_sliderdf865c643d594610aa9cb0b98738e4a9";
+    var loop_select_id = "_anim_loop_selectdf865c643d594610aa9cb0b98738e4a9";
     var frames = new Array(26);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAA10dzkAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -9875,7 +9876,7 @@ S6bJuQcAAAAASUVORK5CYII=\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        animf3355d07fa0b4fe2bea989021193e650 = new Animation(frames, img_id, slider_id, 50.0,
+        animdf865c643d594610aa9cb0b98738e4a9 = new Animation(frames, img_id, slider_id, 50.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -9934,11 +9935,11 @@ S6bJuQcAAAAASUVORK5CYII=\
       </div>
     </a>
     <a class="right-next"
-       href="p30.html"
+       href="burgers1.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">p30: Spectral integration, ODE style</p>
+        <p class="prev-next-title">Burgers equation using FFT</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
