@@ -36,6 +36,7 @@ chapters:
 - file: p26.ipynb
 - file: p27.ipynb
 - file: burgers1.ipynb
+- file: eig_cheb_diff.ipynb
 - file: p30.ipynb
 - file: p32.ipynb
 - file: p33.ipynb
