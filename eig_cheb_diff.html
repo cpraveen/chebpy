@@ -390,7 +390,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -406,6 +408,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rd-order-adams-bashforth-method">3rd order Adams-Bashforth method</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -446,7 +456,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aa7b4f2c018450977d7b4f14d51d7a36b6fb5c4344937145b6e9fdef12062800.svg" src="_images/aa7b4f2c018450977d7b4f14d51d7a36b6fb5c4344937145b6e9fdef12062800.svg" />
+<img alt="_images/e33f245e885eb61934c4a358688b0ebc75efe0eaf635139a9380e8547e0f4587.svg" src="_images/e33f245e885eb61934c4a358688b0ebc75efe0eaf635139a9380e8547e0f4587.svg" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -458,7 +468,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ef3133c8a0c101fedfbbee004de1a025db92ed700e70427eea6d12793f394f33.svg" src="_images/ef3133c8a0c101fedfbbee004de1a025db92ed700e70427eea6d12793f394f33.svg" />
+<img alt="_images/9181d8f7bfec97d762fe73cec76ace8508fd43bcd4692d82385fb8e0694b98eb.svg" src="_images/9181d8f7bfec97d762fe73cec76ace8508fd43bcd4692d82385fb8e0694b98eb.svg" />
 </div>
 </div>
 <p>This shows that</p>
@@ -467,6 +477,35 @@ document.write(`
 \max_i |\lambda_i| = 0.09 N^2
 \]</div>
 <p>All the eigenvalues have non-positive real parts.</p>
+<section id="rd-order-adams-bashforth-method">
+<h2>3rd order Adams-Bashforth method<a class="headerlink" href="#rd-order-adams-bashforth-method" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">D</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">cheb</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">lam</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+
+<span class="n">dt</span> <span class="o">=</span> <span class="mi">7</span><span class="o">/</span><span class="n">N</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">real</span><span class="p">(</span><span class="n">lam</span><span class="o">*</span><span class="n">dt</span><span class="p">),</span><span class="n">imag</span><span class="p">(</span><span class="n">lam</span><span class="o">*</span><span class="n">dt</span><span class="p">),</span><span class="s2">&quot;o&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;$dt=7/N^2$&quot;</span><span class="p">)</span>
+
+<span class="n">dt</span> <span class="o">=</span> <span class="mi">8</span><span class="o">/</span><span class="n">N</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">real</span><span class="p">(</span><span class="n">lam</span><span class="o">*</span><span class="n">dt</span><span class="p">),</span><span class="n">imag</span><span class="p">(</span><span class="n">lam</span><span class="o">*</span><span class="n">dt</span><span class="p">),</span><span class="s2">&quot;*&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;$dt=8/N^2$&quot;</span><span class="p">)</span>
+
+<span class="c1"># Adams-Bashforth</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">201</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">);</span> <span class="n">r</span> <span class="o">=</span> <span class="n">z</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="mi">23</span> <span class="o">-</span> <span class="mi">16</span><span class="o">/</span><span class="n">z</span> <span class="o">+</span> <span class="mi">5</span><span class="o">/</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">12</span><span class="p">;</span> <span class="n">rr</span> <span class="o">=</span> <span class="n">r</span><span class="o">/</span><span class="n">s</span><span class="p">;</span> <span class="n">plot</span><span class="p">(</span><span class="n">real</span><span class="p">(</span><span class="n">rr</span><span class="p">),</span><span class="n">imag</span><span class="p">(</span><span class="n">rr</span><span class="p">))</span>
+<span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span> <span class="n">grid</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="p">)</span>
+<span class="n">title</span><span class="p">(</span><span class="s1">&#39;Adams-Bashforth, N =&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">N</span><span class="p">)),</span> <span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/94f37f29ba8f57528bfa77f75c0f46fe11de79b47370855bdb2b9db2cf920993.svg" src="_images/94f37f29ba8f57528bfa77f75c0f46fe11de79b47370855bdb2b9db2cf920993.svg" />
+</div>
+</div>
+<p>For <span class="math notranslate nohighlight">\(\Delta t = 7/N^2\)</span>, all the values <span class="math notranslate nohighlight">\(\lambda\Delta t\)</span> lie inside the stability domain of this Adams method. For <span class="math notranslate nohighlight">\(\Delta t = 8/N^2\)</span>, some values are outside the stable region.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -523,6 +562,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rd-order-adams-bashforth-method">3rd order Adams-Bashforth method</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
