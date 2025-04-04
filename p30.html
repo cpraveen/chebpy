@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="p32: Solve linear BVP" href="p32.html" />
-    <link rel="prev" title="Burgers equation using FFT" href="burgers1.html" />
+    <link rel="prev" title="Eigenvalues of Chebyshev differentiation matrix" href="eig_cheb_diff.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -212,6 +212,7 @@
 <li class="toctree-l1"><a class="reference internal" href="p26.html">p26: Eigenvalues of 2nd order Chebyshev diff. matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p27.html">p27: Solve KdV equation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="burgers1.html">Burgers equation using FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eig_cheb_diff.html">Eigenvalues of Chebyshev differentiation matrix</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">p30: Spectral integration, ODE style</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p32.html">p32: Solve linear BVP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="p33.html">p33: Solve linear BVP, Neumann bc</a></li>
@@ -460,7 +461,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bbcb2ecebefc9fd0b4af5f125129650896195d294332a3cfdb68ea6098ef71ec.svg" src="_images/bbcb2ecebefc9fd0b4af5f125129650896195d294332a3cfdb68ea6098ef71ec.svg" />
+<img alt="_images/64fa889a6c4c0748db3450ac1ad763b1e51a05639965ea944db371117e90f39c.svg" src="_images/64fa889a6c4c0748db3450ac1ad763b1e51a05639965ea944db371117e90f39c.svg" />
 </div>
 </div>
 <section id="repeat-with-clenshaw-curtis">
@@ -487,7 +488,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d3ba6989fd7663a0a2a5a022c7cf0aa4e6f08ce9fa665c45f1b82041ef167325.svg" src="_images/d3ba6989fd7663a0a2a5a022c7cf0aa4e6f08ce9fa665c45f1b82041ef167325.svg" />
+<img alt="_images/0dbef423f0d61c3c696af2b84be6565c1aa0ae4ab60f4835d3bbad6f8215604f.svg" src="_images/0dbef423f0d61c3c696af2b84be6565c1aa0ae4ab60f4835d3bbad6f8215604f.svg" />
 </div>
 </div>
 </section>
@@ -515,7 +516,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7696e905476ebdf9031989892fed915a7f3985e7b28137e14fb31c8c0947f317.svg" src="_images/7696e905476ebdf9031989892fed915a7f3985e7b28137e14fb31c8c0947f317.svg" />
+<img alt="_images/01e0692d06bbc28cbe2c05d7e1c5f484dcf03b81ef5587b3f7a42e303dab8366.svg" src="_images/01e0692d06bbc28cbe2c05d7e1c5f484dcf03b81ef5587b3f7a42e303dab8366.svg" />
 </div>
 </div>
 </section>
@@ -552,12 +553,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="burgers1.html"
+       href="eig_cheb_diff.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Burgers equation using FFT</p>
+        <p class="prev-next-title">Eigenvalues of Chebyshev differentiation matrix</p>
       </div>
     </a>
     <a class="right-next"
