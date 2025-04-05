@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -450,15 +450,17 @@ document.write(`
     <span class="n">lam</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
     <span class="n">lmax</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
     <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">plot</span><span class="p">(</span><span class="n">real</span><span class="p">(</span><span class="n">lam</span><span class="p">),</span><span class="n">imag</span><span class="p">(</span><span class="n">lam</span><span class="p">),</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">real</span><span class="p">(</span><span class="n">lam</span><span class="p">),</span><span class="n">imag</span><span class="p">(</span><span class="n">lam</span><span class="p">),</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
     <span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">),</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;N = &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5fc1e40492f68787396b4d135322aecd4cc4b3dcedb8305d1e99a685ee98a20e.svg" src="_images/5fc1e40492f68787396b4d135322aecd4cc4b3dcedb8305d1e99a685ee98a20e.svg" />
+<img alt="_images/db26d52c0ca177a66b1c86d2638151f102c6d9d053540d6b7b490b3fc9fbc034.svg" src="_images/db26d52c0ca177a66b1c86d2638151f102c6d9d053540d6b7b490b3fc9fbc034.svg" />
 </div>
 </div>
+<p>All the eigenvalues have non-positive real parts.</p>
+<p>NOTE: Compare to Fig. 4.4-1 in Fornberg; the plot looks bit different for <span class="math notranslate nohighlight">\(N=64\)</span> case.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loglog</span><span class="p">(</span><span class="n">Nvalues</span><span class="p">,</span><span class="n">lmax</span><span class="p">,</span><span class="s2">&quot;o-&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;$max|</span><span class="se">\\</span><span class="s2">lambda|$&quot;</span><span class="p">)</span>
@@ -468,7 +470,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ed57e58163d371dc09b44acfcd95ab8aad42c58653e9eb9943424ad98b5aa2b4.svg" src="_images/ed57e58163d371dc09b44acfcd95ab8aad42c58653e9eb9943424ad98b5aa2b4.svg" />
+<img alt="_images/6141eae7d9df865f4adb4e0f14665fff3de1798432ad78b00247aa7fa37c898b.svg" src="_images/6141eae7d9df865f4adb4e0f14665fff3de1798432ad78b00247aa7fa37c898b.svg" />
 </div>
 </div>
 <p>This shows that</p>
@@ -476,7 +478,6 @@ document.write(`
 \[
 \max_i |\lambda_i| = 0.09 N^2
 \]</div>
-<p>All the eigenvalues have non-positive real parts.</p>
 <section id="rd-order-adams-bashforth-method">
 <h2>3rd order Adams-Bashforth method<a class="headerlink" href="#rd-order-adams-bashforth-method" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -495,13 +496,14 @@ document.write(`
 <span class="c1"># Adams-Bashforth</span>
 <span class="n">z</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">201</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">);</span> <span class="n">r</span> <span class="o">=</span> <span class="n">z</span> <span class="o">-</span> <span class="mi">1</span>
 <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="mi">23</span> <span class="o">-</span> <span class="mi">16</span><span class="o">/</span><span class="n">z</span> <span class="o">+</span> <span class="mi">5</span><span class="o">/</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">12</span><span class="p">;</span> <span class="n">rr</span> <span class="o">=</span> <span class="n">r</span><span class="o">/</span><span class="n">s</span><span class="p">;</span> <span class="n">plot</span><span class="p">(</span><span class="n">real</span><span class="p">(</span><span class="n">rr</span><span class="p">),</span><span class="n">imag</span><span class="p">(</span><span class="n">rr</span><span class="p">))</span>
-<span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span> <span class="n">grid</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span> <span class="n">grid</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="p">);</span> <span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$real(</span><span class="se">\\</span><span class="s1">lambda\Delta t)$&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$imag(</span><span class="se">\\</span><span class="s1">lambda\Delta t)$&#39;</span><span class="p">)</span>
 <span class="n">title</span><span class="p">(</span><span class="s1">&#39;Adams-Bashforth, N =&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">N</span><span class="p">)),</span> <span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a57d757359f615b247ba7ab73524b940a45dab7bafc72a1600b394d1ffe2503a.svg" src="_images/a57d757359f615b247ba7ab73524b940a45dab7bafc72a1600b394d1ffe2503a.svg" />
+<img alt="_images/e3c88ccf7cb4d35b8865165b698af1e0370f71a3ec8efa10c49fb3424c4178e4.svg" src="_images/e3c88ccf7cb4d35b8865165b698af1e0370f71a3ec8efa10c49fb3424c4178e4.svg" />
 </div>
 </div>
 <p>For <span class="math notranslate nohighlight">\(\Delta t = 7/N^2\)</span>, all the values <span class="math notranslate nohighlight">\(\lambda\Delta t\)</span> lie inside the stability domain of this Adams method. For <span class="math notranslate nohighlight">\(\Delta t = 8/N^2\)</span>, some values are outside the stable region.</p>
