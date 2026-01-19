@@ -436,7 +436,7 @@ u_t + c u_x = 0, \qquad x \in (0,2\pi), \qquad c = 1
 <p>with initial condition</p>
 <div class="math notranslate nohighlight">
 \[
-u(x,0) = u_0(x) = \sin(20 x) \exp(-5(x-\pi)^2)
+u(x,0) = \sin(20 x) \exp(-5(x-\pi)^2)
 \]</div>
 <p>periodic boundary conditions and RK4 in time.</p>
 <div class="cell docutils container">
@@ -450,9 +450,10 @@ u(x,0) = u_0(x) = \sin(20 x) \exp(-5(x-\pi)^2)
 <p>Extend <span class="math notranslate nohighlight">\(f :[a,b] \to R\)</span> periodically to whole of <span class="math notranslate nohighlight">\(R\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">periodic</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span>
-    <span class="n">fv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Evaluate f:[a,b] -&gt; R at given x by extending periodically</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">periodic</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">mod</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">fv</span> <span class="o">=</span> <span class="n">vectorize</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">fv</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -504,19 +505,18 @@ u(x,0) = u_0(x) = \sin(20 x) \exp(-5(x-\pi)^2)
 <h2>Make animation<a class="headerlink" href="#make-animation" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">animation</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">animation</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">rc</span>
 <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;animation&#39;</span><span class="p">,</span> <span class="n">html</span><span class="o">=</span><span class="s1">&#39;jshtml&#39;</span><span class="p">)</span>
 
 <span class="c1"># First set up the figure, the axis, and the plot element we want to animate</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">))</span>
 <span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
 <span class="n">exact</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;exact&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+<span class="n">close</span><span class="p">();</span>
 
 <span class="c1"># initialization function: plot the background of each frame</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">():</span>
@@ -736,42 +736,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img61be7c221165454398caa5f64c10daf8">
+  <img id="_anim_img4cd3b7117a744a788226f84eb4211cd0">
   <div class="anim-controls">
-    <input id="_anim_slider61be7c221165454398caa5f64c10daf8" type="range" class="anim-slider"
+    <input id="_anim_slider4cd3b7117a744a788226f84eb4211cd0" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anim61be7c221165454398caa5f64c10daf8.set_frame(parseInt(this.value));">
+           oninput="anim4cd3b7117a744a788226f84eb4211cd0.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim61be7c221165454398caa5f64c10daf8.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim4cd3b7117a744a788226f84eb4211cd0.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anim61be7c221165454398caa5f64c10daf8.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim4cd3b7117a744a788226f84eb4211cd0.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anim61be7c221165454398caa5f64c10daf8.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim4cd3b7117a744a788226f84eb4211cd0.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anim61be7c221165454398caa5f64c10daf8.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim4cd3b7117a744a788226f84eb4211cd0.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anim61be7c221165454398caa5f64c10daf8.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim4cd3b7117a744a788226f84eb4211cd0.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anim61be7c221165454398caa5f64c10daf8.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim4cd3b7117a744a788226f84eb4211cd0.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anim61be7c221165454398caa5f64c10daf8.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim4cd3b7117a744a788226f84eb4211cd0.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anim61be7c221165454398caa5f64c10daf8.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim4cd3b7117a744a788226f84eb4211cd0.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anim61be7c221165454398caa5f64c10daf8.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim4cd3b7117a744a788226f84eb4211cd0.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select61be7c221165454398caa5f64c10daf8"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select4cd3b7117a744a788226f84eb4211cd0"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_61be7c221165454398caa5f64c10daf8"
+      <input type="radio" name="state" value="once" id="_anim_radio1_4cd3b7117a744a788226f84eb4211cd0"
              checked>
-      <label for="_anim_radio1_61be7c221165454398caa5f64c10daf8">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_61be7c221165454398caa5f64c10daf8"
+      <label for="_anim_radio1_4cd3b7117a744a788226f84eb4211cd0">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_4cd3b7117a744a788226f84eb4211cd0"
              >
-      <label for="_anim_radio2_61be7c221165454398caa5f64c10daf8">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_61be7c221165454398caa5f64c10daf8"
+      <label for="_anim_radio2_4cd3b7117a744a788226f84eb4211cd0">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_4cd3b7117a744a788226f84eb4211cd0"
              >
-      <label for="_anim_radio3_61be7c221165454398caa5f64c10daf8">Reflect</label>
+      <label for="_anim_radio3_4cd3b7117a744a788226f84eb4211cd0">Reflect</label>
     </form>
   </div>
 </div>
@@ -781,9 +781,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img61be7c221165454398caa5f64c10daf8";
-    var slider_id = "_anim_slider61be7c221165454398caa5f64c10daf8";
-    var loop_select_id = "_anim_loop_select61be7c221165454398caa5f64c10daf8";
+    var img_id = "_anim_img4cd3b7117a744a788226f84eb4211cd0";
+    var slider_id = "_anim_slider4cd3b7117a744a788226f84eb4211cd0";
+    var loop_select_id = "_anim_loop_select4cd3b7117a744a788226f84eb4211cd0";
     var frames = new Array(63);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+gAAAJYCAYAAADxHswlAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -42322,7 +42322,7 @@ BSjoAAAAAABYgIIOAAAAAIAFKOgAAAAAAFiAgg4AAAAAgAUo6AAAAAAAWICCDgAAAACABf4Fw2Wy\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim61be7c221165454398caa5f64c10daf8 = new Animation(frames, img_id, slider_id, 50.0,
+        anim4cd3b7117a744a788226f84eb4211cd0 = new Animation(frames, img_id, slider_id, 50.0,
                                  loop_select_id);
     }, 0);
   })()
