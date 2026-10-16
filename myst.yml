@@ -15,6 +15,9 @@ project:
 site:
   template: book-theme
   title: Spectral Methods
+  #nav:
+  #  - title: Spectral Methods
+  #    url: https://cpraveen.github.io
   options:
     logo: logo.png
     logo_text: Spectral Methods
