@@ -1,0 +1,62 @@
+version: 1
+project:
+  title: Spectral Methods
+  authors:
+    - name: Praveen Chandrashekar
+      twitter: cfdlab
+      github: cfdlab
+  github: https://github.com/cpraveen/chebpy
+  copyright: '2025'
+  #date: '2025'
+  #execute:
+  #  execute_notebooks: force
+  #  execution_mode: force
+
+site:
+  template: book-theme
+  title: Spectral Methods
+  options:
+    logo: logo.png
+    logo_text: Spectral Methods
+    hide_title_on_index: false
+    use_issues_button: true
+    use_repository_button: true
+    use_multitoc_numbering: true
+    home_page_in_navbar: true
+
+#repository:
+#  url: https://github.com/cpraveen/chebpy
+#  path_to_book: .
+#  branch: master
+
+#bibliography:
+#  - references.bib
+
+#math:
+#  mathjax3:
+#    enable: true
+#    url: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+#parse:
+#  myst_enable_extensions:
+#    - amsmath
+#    - dollarmath
+
+#html:
+#  use_issues_button: true
+#  use_repository_button: true
+#  use_multitoc_numbering: true
+#  home_page_in_navbar: true
+
+#latex:
+#  documents:
+#    - targetname: book.tex
+#      docname: book
+
+#only_build_toc_files: true
+#outbound_links:
+#  include: true
+#intersphinx:
+#  links: {}
+#numbering:
+#  headings: true

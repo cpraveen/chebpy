@@ -38,3 +38,13 @@ jb build chebpy
 cd chebpy
 ghp-import -n -p -f _build/html
 ```
+
+The above does not work anymore, use this
+
+```shell
+git clone git@github.com:cpraveen/chebpy
+cd chebpy
+myst build --html --execute
+ghp-import -n -p -f _build/html
+```
+
