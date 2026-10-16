@@ -44,7 +44,13 @@ The above does not work anymore, use this
 ```shell
 git clone git@github.com:cpraveen/chebpy
 cd chebpy
+
+jupyter book build --html
+
+# or
+
 myst build --html --execute
+
 ghp-import -n -p -f _build/html
 ```
 
