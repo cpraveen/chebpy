@@ -33,7 +33,7 @@ conda install jupyter-book ghp-import
 Build html and publish
 
 ```shell
-git checkout git@github.com:cpraveen/chebpy
+git clone git@github.com:cpraveen/chebpy
 jb build chebpy
 cd chebpy
 ghp-import -n -p -f _build/html
