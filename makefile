@@ -1,6 +1,6 @@
 html:
 	export BASE_URL=/chebpy
-	jupyter book build --html
+	myst build --html --execute
 
 upload:
 	ghp-import -n -p -f _build/html
