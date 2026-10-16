@@ -1,1 +1,1 @@
-import{a}from"/chebpy/build/_shared/chunk-RZODLQDF.js";import"/chebpy/build/_shared/chunk-JZMDU4WS.js";import"/chebpy/build/_shared/chunk-IA6DDOHA.js";import"/chebpy/build/_shared/chunk-RAQ24GF6.js";export default a();
+import{a}from"/build/_shared/chunk-RZODLQDF.js";import"/build/_shared/chunk-JZMDU4WS.js";import"/build/_shared/chunk-IA6DDOHA.js";import"/build/_shared/chunk-RAQ24GF6.js";export default a();

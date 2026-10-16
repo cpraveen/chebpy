@@ -1,1 +1,1 @@
-import{a}from"/chebpy/build/_shared/chunk-NLEQSOER.js";import"/chebpy/build/_shared/chunk-RAQ24GF6.js";export default a();
+import{a}from"/build/_shared/chunk-NLEQSOER.js";import"/build/_shared/chunk-RAQ24GF6.js";export default a();
