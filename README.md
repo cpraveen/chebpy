@@ -8,7 +8,9 @@ These examples are based on the book
 
 > L. N. Trefethen, Spectral Methods in MATLAB, SIAM.
 
-I have rewritten these codes in Python.
+I have rewritten these codes in Python and added more examples.
+
+I have some slides which I use for teaching along with this code, get them [here](https://bitbucket.org/cpraveen/www/downloads/spectral.pdf).
 
 For nbviewer links to these files, see here
 
@@ -44,13 +46,7 @@ The above does not work anymore, use this
 ```shell
 git clone git@github.com:cpraveen/chebpy
 cd chebpy
-
-jupyter book build --html
-
-# or
-
 myst build --html --execute
-
 ghp-import -n -p -f _build/html
 ```
 
