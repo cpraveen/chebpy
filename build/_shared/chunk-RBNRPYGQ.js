@@ -1,4 +1,4 @@
-import{b as e}from"/chebpy/build/_shared/chunk-DYFJVR7X.js";var l=e(()=>`
+import{b as e}from"/build/_shared/chunk-DYFJVR7X.js";var l=e(()=>`
   /* Font Awesome icon styling - consolidated */
   .label-icon {
     display: inline-block;
