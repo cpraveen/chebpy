@@ -4,7 +4,9 @@ These examples are based on the book
 
 > L. N. Trefethen, Spectral Methods in MATLAB, SIAM.
 
-I have rewritten these codes in Python.
+I have rewritten these codes in Python and added more examples.
+
+I have some slides which I use for teaching along with this code, get them [here](https://bitbucket.org/cpraveen/www/downloads/spectral.pdf).
 
 You can get the codes and run them on your own computer
 
@@ -16,7 +18,7 @@ jupyter-lab
 
 For nbviewer links to these files, see here
 
-<http://cpraveen.github.io/teaching/chebpy.html>
+<https://cpraveen.github.io/teaching/chebpy.html>
 
 Run the code in binder: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cpraveen/chebpy/HEAD)
 

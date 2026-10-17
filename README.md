@@ -12,9 +12,17 @@ I have rewritten these codes in Python and added more examples.
 
 I have some slides which I use for teaching along with this code, get them [here](https://bitbucket.org/cpraveen/www/downloads/spectral.pdf).
 
+You can get the codes and run them on your own computer
+
+```shell
+git clone https://github.com/cpraveen/chebpy
+cd chebpy
+jupyter-lab
+```
+
 For nbviewer links to these files, see here
 
-http://cpraveen.github.io/teaching/chebpy.html
+<https://cpraveen.github.io/teaching/chebpy.html>
 
 Run the code in binder: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cpraveen/chebpy/HEAD)
 
@@ -22,7 +30,7 @@ Run the code in colab: [![Colab](https://colab.research.google.com/assets/colab-
 
 Matlab versions of the code are available here
 
-https://github.com/cpraveen/spectral_matlab
+<https://github.com/cpraveen/spectral_matlab>
 
 ## Building jupyter-book
 
